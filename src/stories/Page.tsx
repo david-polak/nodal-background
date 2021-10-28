@@ -18,5 +18,5 @@ export const Page = ({}: PageProps) => {
     }
   }, [container.current])
 
-  return <div ref={container} />
+  return <div id="canvas-wrapper" ref={container} />
 }
