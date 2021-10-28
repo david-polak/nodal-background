@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import * as Vec2 from 'vec2';
 
 function getRandomArbitrary(min:number , max: number) {
     return Math.random() * (max - min) + min;
@@ -7,12 +8,15 @@ function getRandomArbitrary(min:number , max: number) {
 
 class Node {
     ctx: any
+
+    position: Vec2
+
     x: number
     y: number
 
     constructor(ctx: any, width: number, height: number) {
-        this.x = getRandomArbitrary(0, height);
-        this.y = getRandomArbitrary(0, width)
+        this.x = getRandomArbitrary(0, width);
+        this.y = getRandomArbitrary(0, height)
         this.ctx = ctx
     }
 
@@ -49,6 +53,7 @@ class NodalBackground {
     }
 
     resize () {
+        console.log(devicePixelRatio)
         this.width = this.container.clientWidth * devicePixelRatio;
         this.height = this.container.clientHeight * devicePixelRatio;
 
