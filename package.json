@@ -21,10 +21,8 @@
   },
   "homepage": "https://github.com/david-polak/nodal-background#readme",
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --fix",
-    "*.{ts,tsx,js,jsx,css,md,json}": "prettier --write",
-    "*.js": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
+    "*.{ts,tsx}": "eslint --cache --fix",
+    "*.{ts,tsx,js,jsx,css,md,json}": "prettier --write"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
