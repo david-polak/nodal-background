@@ -11,8 +11,16 @@ class Node {
   position: Vec2
   velocity: Vec2
 
-  constructor(ctx: any, width: number, height: number, max_velocity: number = 0.5) {
-    this.position = new Vec2(getRandomArbitrary(0, width), getRandomArbitrary(0, height))
+  constructor(
+    ctx: any,
+    width: number,
+    height: number,
+    max_velocity = 0.5
+  ) {
+    this.position = new Vec2(
+      getRandomArbitrary(0, width),
+      getRandomArbitrary(0, height)
+    )
     this.velocity = new Vec2(
       getRandomArbitrary(-max_velocity, max_velocity),
       getRandomArbitrary(-max_velocity, max_velocity)
