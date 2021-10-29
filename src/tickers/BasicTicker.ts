@@ -2,8 +2,11 @@ import { AbstractNode } from "../nodes/AbstractNode"
 import { AbstractTicker } from "./AbstractTicker"
 
 export class BasicTicker extends AbstractTicker {
-  tick(tDelta: number, nodeA: AbstractNode, nodeB: AbstractNode) {
-    // velocity - "px"/s
-    nodeA.position.add(nodeA.velocity.clone().multiplyByFactor(tDelta / 1000))
+  tickSingle(tDelta: number, node: AbstractNode): void {
+    node.position.add(node.velocity.clone().multiplyByFactor(tDelta / 1000))
+  }
+
+  tickBoth(tDelta: number, nodeA: AbstractNode, nodeB: AbstractNode): number {
+    return nodeA.position.distance(nodeB.position)
   }
 }
