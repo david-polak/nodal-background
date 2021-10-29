@@ -1,13 +1,18 @@
-import Vector2 from "../vector2/vector2"
-import { getRandomArbitrary } from "../utils/getRandomArbitrary"
+import Vector2 from "../Vector2"
+import getRandomArbitrary from "../utils/getRandomArbitrary"
 
-export class Node {
-  ctx: any
+export class BasicNode {
+  ctx: CanvasRenderingContext2D
 
   position: Vector2
   velocity: Vector2
 
-  constructor(ctx: any, width: number, height: number, max_velocity: number) {
+  constructor(
+    ctx: CanvasRenderingContext2D,
+    width: number,
+    height: number,
+    max_velocity: number
+  ) {
     this.position = new Vector2(
       getRandomArbitrary(0, width),
       getRandomArbitrary(0, height)

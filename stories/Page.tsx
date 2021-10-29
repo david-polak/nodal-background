@@ -1,11 +1,9 @@
 import React, { useEffect, useRef } from "react"
 
 import "./page.css"
-import { useNodalBackground } from "../index"
+import { useNodalBackground } from "../src"
 
-interface PageProps {}
-
-export const Page = ({}: PageProps) => {
+export const Page = () => {
   const container = useRef()
 
   const { setContainer } = useNodalBackground({
