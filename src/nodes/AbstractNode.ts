@@ -12,17 +12,22 @@ export abstract class AbstractNode {
     height: number,
     max_velocity: number
   ) {
-    this.position = new Vector2(
-      getRandomArbitrary(0, width),
-      getRandomArbitrary(0, height)
-    )
-    this.position = new Vector2(100, 100)
+    this.reposition(width, height)
+    // this.position = new Vector2(300, 300)
+
     this.velocity = new Vector2(
       getRandomArbitrary(-max_velocity, max_velocity),
       getRandomArbitrary(-max_velocity, max_velocity)
     )
 
     this.ctx = ctx
+  }
+
+  reposition(width: number, height: number): void {
+    this.position = new Vector2(
+      getRandomArbitrary(0, width),
+      getRandomArbitrary(0, height)
+    )
   }
 
   abstract render(): void

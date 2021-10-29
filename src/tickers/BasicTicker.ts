@@ -7,6 +7,6 @@ export class BasicTicker extends AbstractTicker {
   }
 
   tickBoth(tDelta: number, nodeA: AbstractNode, nodeB: AbstractNode): number {
-    return nodeA.position.distance(nodeB.position)
+    return (nodeA.position.distance(nodeB.position) - 200) / (0 - 200)
   }
 }

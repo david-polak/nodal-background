@@ -54,12 +54,15 @@ export class NodalBackground {
 
     this.linker = new StandardLinker(this.context)
 
-    for (let fori = 0; fori < 2; fori++) {
-      this.nodes.push(new BasicNode(this.context, this.width, this.height, 100))
-    }
+    // for (let fori = 0; fori < 2; fori++) {
+    //   this.nodes.push(new BasicNode(this.context, this.width, this.height, 100))
+    // }
+    // this.nodes[0].velocity = new Vector2(0, 20)
+    // this.nodes[1].velocity = new Vector2(20, 0)
 
-    this.nodes[0].velocity = new Vector2(0, 20)
-    this.nodes[1].velocity = new Vector2(20, 0)
+    for (let fori = 0; fori < 100; fori++) {
+      this.nodes.push(new BasicNode(this.context, this.width, this.height, 50))
+    }
 
     this.tPrevious = Date.now()
 
@@ -87,16 +90,27 @@ export class NodalBackground {
       const nodeA: AbstractNode = this.nodes[i]
       this.ticker.tickSingle(time, nodeA)
 
-      for (let j = 0; j < this.nodes.length; j++) {
+      for (let j = i + 1; j < this.nodes.length; j++) {
         const nodeB: AbstractNode = this.nodes[j]
         const factor = this.ticker.tickBoth(time, nodeA, nodeB)
 
-        this.linker.renderLink(factor, nodeA, nodeB)
+        if (factor > 0.01) {
+          this.linker.renderLink(factor, nodeA, nodeB)
+        }
       }
     }
 
     this.nodes.forEach((node: AbstractNode) => {
       node.render()
+
+      if (
+        node.position.x > this.canvas.width + 10 ||
+        node.position.y > this.canvas.height + 10 ||
+        node.position.x < -10 ||
+        node.position.y < -10
+      ) {
+        node.reposition(this.canvas.width, this.canvas.height)
+      }
     })
 
     // console.log("--------------------")
