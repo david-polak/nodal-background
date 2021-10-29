@@ -12,18 +12,20 @@ class Vector2 {
   }
 
   add(vector: Vector2): Vector2 {
-    this.x += vector.x
-    this.y += vector.y
+    this.x = this.x + vector.x
+    this.y = this.y + vector.y
     return this
   }
 
-  addX(vector: Vector2): Vector2 {
-    this.x += vector.x
-    return this
+  distance(vector: Vector2): number {
+    const distanceX = this.x - vector.x
+    const distanceY = this.y - vector.y
+    return Math.sqrt(distanceX * distanceX + distanceY * distanceY)
   }
 
-  addY(vector: Vector2): Vector2 {
-    this.y += vector.y
+  multiplyByFactor(factor: number): Vector2 {
+    this.x = this.x * factor
+    this.y = this.y * factor
     return this
   }
 }

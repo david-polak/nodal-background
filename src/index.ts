@@ -12,6 +12,10 @@ export function useNodalBackground(props: any) {
         "resize",
         nodalBackground.resize.bind(nodalBackground)
       )
+      // window.setInterval(
+      //     nodalBackground.tick.bind(nodalBackground),
+      //     100
+      // )
     }
   }, [container])
 
