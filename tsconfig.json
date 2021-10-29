@@ -6,7 +6,8 @@
     "target": "esnext",
     "moduleResolution": "node",
     "removeComments": false,
-    "jsx": "react"
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
   "exclude": ["src/stories"]
