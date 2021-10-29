@@ -10,19 +10,32 @@ class Node {
     ctx: any
 
     position: Vec2
+    velocity: Vec2
 
-    x: number
-    y: number
 
-    constructor(ctx: any, width: number, height: number) {
-        this.x = getRandomArbitrary(0, width);
-        this.y = getRandomArbitrary(0, height)
+    constructor(ctx: any, width: number, height: number, max_velocity: number = 0.5) {
+        this.position = new Vec2(
+            getRandomArbitrary(0, width),
+            getRandomArbitrary(0, height))
+        this.velocity = new Vec2(
+            getRandomArbitrary(-max_velocity, max_velocity),
+            getRandomArbitrary(-max_velocity, max_velocity)
+        )
+
         this.ctx = ctx
     }
 
     render() {
         this.ctx.beginPath();
-        this.ctx.arc(this.x, this.y, 2, 0, 2 * Math.PI);
+        this.ctx.arc(this.position.x, this.position.y, 2, 0, 2 * Math.PI);
+
+        this.position.add(this.velocity)
+
+        // if (this.position.x > this.ctx.width || this.position.y > this.ctx.height) {
+        //     this.position.negate()
+        //     console.log(this.position)
+        // }
+
         this.ctx.fill();
     }
 }
