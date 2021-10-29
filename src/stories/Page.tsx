@@ -1,7 +1,7 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from "react"
 
-import './page.css';
-import {useNodalBackground} from "../index";
+import "./page.css"
+import { useNodalBackground } from "../index"
 
 interface PageProps {}
 
