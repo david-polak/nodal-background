@@ -7,8 +7,9 @@
     "moduleResolution": "node",
     "removeComments": false,
     "jsx": "react",
-    "esModuleInterop": true
-    //    "allowSyntheticDefaultImports": true
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
   "exclude": ["src/stories"]

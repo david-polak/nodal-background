@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import * as Vec2 from "vec2"
+import Vector2 from "./vector2/vector2"
 
 function getRandomArbitrary(min: number, max: number) {
   return Math.random() * (max - min) + min
@@ -8,20 +8,15 @@ function getRandomArbitrary(min: number, max: number) {
 class Node {
   ctx: any
 
-  position: Vec2
-  velocity: Vec2
+  position: Vector2
+  velocity: Vector2
 
-  constructor(
-    ctx: any,
-    width: number,
-    height: number,
-    max_velocity = 0.5
-  ) {
-    this.position = new Vec2(
+  constructor(ctx: any, width: number, height: number, max_velocity = 0.5) {
+    this.position = new Vector2(
       getRandomArbitrary(0, width),
       getRandomArbitrary(0, height)
     )
-    this.velocity = new Vec2(
+    this.velocity = new Vector2(
       getRandomArbitrary(-max_velocity, max_velocity),
       getRandomArbitrary(-max_velocity, max_velocity)
     )
