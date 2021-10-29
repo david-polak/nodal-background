@@ -1,43 +1,5 @@
 import { useEffect, useState } from "react"
-import Vector2 from "./vector2/vector2"
-
-function getRandomArbitrary(min: number, max: number) {
-  return Math.random() * (max - min) + min
-}
-
-class Node {
-  ctx: any
-
-  position: Vector2
-  velocity: Vector2
-
-  constructor(ctx: any, width: number, height: number, max_velocity = 0.5) {
-    this.position = new Vector2(
-      getRandomArbitrary(0, width),
-      getRandomArbitrary(0, height)
-    )
-    this.velocity = new Vector2(
-      getRandomArbitrary(-max_velocity, max_velocity),
-      getRandomArbitrary(-max_velocity, max_velocity)
-    )
-
-    this.ctx = ctx
-  }
-
-  render() {
-    this.ctx.beginPath()
-    this.ctx.arc(this.position.x, this.position.y, 2, 0, 2 * Math.PI)
-
-    this.position.add(this.velocity)
-
-    // if (this.position.x > this.ctx.width || this.position.y > this.ctx.height) {
-    //     this.position.negate()
-    //     console.log(this.position)
-    // }
-
-    this.ctx.fill()
-  }
-}
+import { Node } from "./node/node"
 
 class NodalBackground {
   container: any
@@ -79,7 +41,7 @@ class NodalBackground {
     this.resize()
 
     for (let fori = 0; fori < 50; fori++) {
-      this.nodes.push(new Node(this.context, this.width, this.height))
+      this.nodes.push(new Node(this.context, this.width, this.height, 0.1))
     }
 
     requestAnimationFrame((time) => {
