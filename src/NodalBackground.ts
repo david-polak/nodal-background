@@ -61,7 +61,7 @@ export class NodalBackground {
     // this.nodes[1].velocity = new Vector2(20, 0)
 
     for (let fori = 0; fori < 100; fori++) {
-      this.nodes.push(new BasicNode(this.context, this.width, this.height, 50))
+      this.nodes.push(new BasicNode(this.context, this.width, this.height, 30))
     }
 
     this.tPrevious = Date.now()
