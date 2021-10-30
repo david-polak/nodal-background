@@ -9,7 +9,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o docs/",
     "prepare": "husky install",
-    "release": "standard-version"
+    "standard-version": "standard-version"
   },
   "repository": {
     "type": "git",
