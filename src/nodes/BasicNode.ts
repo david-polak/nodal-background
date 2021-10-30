@@ -3,7 +3,9 @@ import { AbstractNode } from "./AbstractNode"
 export class BasicNode extends AbstractNode {
   render() {
     this.context.beginPath()
-    this.context.fillStyle = "#111"
+
+    this.context.fillStyle = `rgba(1,1,1,${this.age < 1 ? this.age : 1})`
+
     this.context.arc(
       this.position.x,
       this.position.y,
