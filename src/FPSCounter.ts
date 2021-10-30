@@ -10,7 +10,7 @@ export class FPSCounter {
 
     if (!enabled) {
       // eslint-disable-next-line
-      this.draw = () => {} // eslint-disable-line no-empty-function
+      this.draw = () => {}
     }
   }
 
