@@ -183,6 +183,10 @@ export class NodalBackground {
           this.linker.renderLink(factor, this.nodes[i], this.nodes[j])
         }
       }
+    }
+
+    for (let i = 0; i < this.nodes.length; i++) {
+      const nodeA: AbstractNode = this.nodes[i]
 
       nodeA.render()
 
