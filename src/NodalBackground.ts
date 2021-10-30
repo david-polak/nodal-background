@@ -49,7 +49,7 @@ export class NodalBackground {
 
     this.nodes = []
     // this.ticker = new BasicTicker(200)
-    this.ticker = new EulerTicker(100)
+    this.ticker = new EulerTicker(150)
 
     const target_fps = 50
     this.tFps = (1 / target_fps) * 1000

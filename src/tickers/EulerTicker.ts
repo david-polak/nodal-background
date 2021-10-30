@@ -25,12 +25,12 @@ export class EulerTicker extends AbstractTicker {
     const massFactor = 1
 
     if (distance < 10) {
-      if (distance < 10) {
+      if (distance < 5) {
         return true
       }
       return 1
     }
-    if (distance > 100) {
+    if (distance > this.max_distance) {
       return 0
     }
 
