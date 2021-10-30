@@ -121,10 +121,5 @@ export class NodalBackground {
         node.recreate(this.canvas.width, this.canvas.height, this.max_velocity)
       }
     })
-
-    // console.log("--------------------")
-    // console.log(i, j)
-    // console.log(nodeA.position)
-    // console.log(nodeB.position)
   }
 }

@@ -7,16 +7,18 @@ export abstract class AbstractNode {
   velocity: Vector2
   age: number
   age_factor: number
+  mass: number
 
   constructor(
     ctx: CanvasRenderingContext2D,
     width: number,
     height: number,
     max_velocity: number,
+    mass?: number,
     age?: number,
     age_factor?: number
   ) {
-    this.recreate(width, height, max_velocity, age)
+    this.recreate(width, height, max_velocity, mass, age, age_factor)
     // this.position = new Vector2(300, 300)
     this.ctx = ctx
   }
@@ -25,11 +27,13 @@ export abstract class AbstractNode {
     width: number,
     height: number,
     max_velocity: number,
+    mass?: number,
     age?: number,
     age_factor?: number
   ): void {
     this.age = age || 0
     this.age_factor = age_factor || 0.5
+    this.mass = mass || 1.5
 
     this.position = new Vector2(
       getRandomArbitrary(0, width),
