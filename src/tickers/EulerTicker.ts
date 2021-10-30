@@ -50,7 +50,9 @@ export class EulerTicker extends AbstractTicker {
     nodeB.velocity.y += forceBy
 
     return (
-      Math.sqrt(forceAx * forceAx + forceAy * forceAy) / (tDelta / 1000) / 10
+      ((distance - this.max_distance) / (0 - this.max_distance)) *
+      (nodeA.age < 1 ? nodeA.age : 1) *
+      (nodeB.age < 1 ? nodeB.age : 1)
     )
   }
 }

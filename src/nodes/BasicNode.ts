@@ -3,10 +3,11 @@ import { AbstractNode } from "./AbstractNode"
 export class BasicNode extends AbstractNode {
   render() {
     this.context.beginPath()
+    this.context.fillStyle = "#0d8500"
     this.context.arc(
       this.position.x,
       this.position.y,
-      this.mass,
+      Math.sqrt(this.mass / Math.PI) + 0.5,
       0,
       2 * Math.PI
     )
