@@ -182,9 +182,9 @@ export class NodalBackground {
         if (factor > 0.01) {
           this.linker.renderLink(factor, this.nodes[i], this.nodes[j])
         }
-
-        nodeA.render()
       }
+
+      nodeA.render()
 
       if (
         nodeA.position.x < -this.drop_distance ||
