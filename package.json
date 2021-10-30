@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o pages/",
+    "build-storybook": "build-storybook -o docs/",
     "prepare": "husky install"
   },
   "repository": {
