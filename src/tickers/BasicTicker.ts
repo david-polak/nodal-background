@@ -7,9 +7,17 @@ export class BasicTicker extends AbstractTicker {
   }
 
   tickBoth(tDelta: number, nodeA: AbstractNode, nodeB: AbstractNode): number {
-    return (
+    let factor =
       (nodeA.position.distance(nodeB.position) - this.max_distance) /
       (0 - this.max_distance)
-    )
+
+    if (nodeA.age < 1) {
+      factor = factor * nodeA.age
+    }
+    if (nodeB.age < 1) {
+      factor = factor * nodeB.age
+    }
+
+    return factor
   }
 }

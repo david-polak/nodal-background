@@ -100,14 +100,7 @@ export class NodalBackground {
 
       for (let j = i + 1; j < this.nodes.length; j++) {
         const nodeB: AbstractNode = this.nodes[j]
-        let factor = this.ticker.tickBoth(time, nodeA, nodeB)
-
-        if (nodeA.age < 1) {
-          factor = factor * nodeA.age
-        }
-        if (nodeB.age < 1) {
-          factor = factor * nodeB.age
-        }
+        const factor = this.ticker.tickBoth(time, nodeA, nodeB)
 
         if (factor > 0.01) {
           this.linker.renderLink(factor, nodeA, nodeB)
