@@ -21,6 +21,7 @@ export class EulerTicker extends AbstractTicker {
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
 
     const attraction = 10
+    const massFactor = 1
 
     if (distance < 10) {
       if (distance < 10) {
@@ -37,11 +38,11 @@ export class EulerTicker extends AbstractTicker {
     const accelerationX = (nodeA.position.x - nodeB.position.x) * scalar
     const accelerationY = (nodeA.position.y - nodeB.position.y) * scalar
 
-    const forceAx = -(accelerationX * nodeA.mass)
-    const forceAy = -(accelerationY * nodeA.mass)
+    const forceAx = -(accelerationX * nodeB.mass * massFactor)
+    const forceAy = -(accelerationY * nodeB.mass * massFactor)
 
-    const forceBx = accelerationX * nodeB.mass
-    const forceBy = accelerationY * nodeB.mass
+    const forceBx = accelerationX * nodeA.mass * massFactor
+    const forceBy = accelerationY * nodeA.mass * massFactor
 
     nodeA.velocity.x += forceAx
     nodeA.velocity.y += forceAy
