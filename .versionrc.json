@@ -1,0 +1,13 @@
+{
+  "types": [
+    { "type": "feat", "section": "Features" },
+    { "type": "fix", "section": "Minor changes" },
+    { "type": "docs", "section": "Minor changes" },
+    { "type": "style", "section": "Minor changes" },
+    { "type": "refactor", "section": "Technical debt" },
+    { "type": "perf", "section": "Technical debt" },
+    { "type": "test", "section": "Technical debt" },
+    { "type": "chore", "hidden": true }
+  ],
+  "releaseCommitMessageFormat": "chore: bump version to {{currentTag}}"
+}
