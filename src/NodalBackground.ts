@@ -47,14 +47,14 @@ export class NodalBackground {
     this.direction = true
 
     this.nodes = []
-    this.ticker = new BasicTicker(200)
-    // this.ticker = new EulerTicker(200)
+    // this.ticker = new BasicTicker(200)
+    this.ticker = new EulerTicker(200)
 
-    const target_fps = 10
+    const target_fps = 200
     this.tFps = (1 / target_fps) * 1000
     this.max_velocity = 20
     this.drop_distance = 20
-    this.target_nodes = 2
+    this.target_nodes = 100
   }
 
   resize() {

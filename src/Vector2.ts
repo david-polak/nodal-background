@@ -29,6 +29,16 @@ class Vector2 {
     return this
   }
 
+  negate(): Vector2 {
+    this.x = -this.x
+    this.y = -this.y
+    return this
+  }
+
+  magnitude(): number {
+    return Math.sqrt(this.x * this.x + this.y * this.y)
+  }
+
   multiplyByScalar(factor: number): Vector2 {
     this.x = this.x * factor
     this.y = this.y * factor

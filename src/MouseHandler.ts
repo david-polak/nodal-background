@@ -56,4 +56,7 @@ export class MouseHandler {
     this.node.velocity = this.velocity
     this.active = false
   }
+
+  // eslint-disable-next-line
+  tick() {}
 }

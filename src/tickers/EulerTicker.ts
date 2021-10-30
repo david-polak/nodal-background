@@ -11,21 +11,21 @@ export class EulerTicker extends AbstractTicker {
 
     const attraction = 10
 
-    if (distance > 0.001) {
+    if (distance > 10) {
       const scalar = Math.pow(distance, -3) * attraction * tDelta
 
       const difference = nodeA.position.clone().subtract(nodeB.position)
       const acceleration = difference.multiplyByScalar(scalar)
 
-      const forceA = acceleration.clone().multiplyByScalar(nodeA.mass)
+      const forceA = acceleration.clone().multiplyByScalar(nodeA.mass).negate()
       const forceB = acceleration.multiplyByScalar(nodeB.mass)
 
       nodeA.velocity.add(forceA)
       nodeB.velocity.add(forceB)
 
-      return 1
+      return forceA.magnitude() * 1.5
     }
 
-    return 1
+    return 0
   }
 }

@@ -15,11 +15,11 @@ export class FPSCounter {
   }
 
   draw(time: number) {
-    this.context.font = "12px serif"
     this.fps = this.decay * this.fps + (1 - this.decay) * (1 / (time / 1000))
 
+    this.context.font = "12px serif"
     this.context.fillText(
-      `${this.fps.toFixed(2)}fps ${time.toFixed(2)}ms`,
+      `${this.fps.toFixed(2)} fps ${time.toFixed(2)} ms`,
       0,
       12
     )
