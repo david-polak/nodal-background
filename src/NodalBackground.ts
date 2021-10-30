@@ -155,9 +155,6 @@ export class NodalBackground {
 
       // resetting the mouse node's position
       this.mouse_handler.tick()
-
-      // at this point positions have been updated and we can render
-      node.render()
     }
 
     for (let i = 0; i < this.nodes.length; i++) {
@@ -174,6 +171,8 @@ export class NodalBackground {
         if (factor > 0.01) {
           this.linker.renderLink(factor, this.nodes[i], this.nodes[j])
         }
+
+        nodeA.render()
       }
 
       if (
