@@ -133,17 +133,6 @@ export class NodalBackground {
       this.factors.push([])
     }
 
-    while (this.toMerge.length) {
-      const toMerge: Array<AbstractNode> = this.toMerge.pop()
-      const nodeA: AbstractNode = toMerge[0]
-      const nodeB: AbstractNode = toMerge[1]
-      if (nodeA.mass > nodeB.mass) {
-        this.mergeNodes(nodeA, nodeB)
-      } else {
-        this.mergeNodes(nodeB, nodeA)
-      }
-    }
-
     for (let i = 0; i < this.nodes.length; i++) {
       // ageing up the node
       this.nodes[i].tick(time)
@@ -176,12 +165,23 @@ export class NodalBackground {
 
         if (factor === true || factor === false) {
           this.toMerge.push([this.nodes[i], this.nodes[j]])
-          factor = 1
+          factor = 0
         }
 
         if (factor > 0.01) {
           this.linker.renderLink(factor, this.nodes[i], this.nodes[j])
         }
+      }
+    }
+
+    while (this.toMerge.length) {
+      const toMerge: Array<AbstractNode> = this.toMerge.pop()
+      const nodeA: AbstractNode = toMerge[0]
+      const nodeB: AbstractNode = toMerge[1]
+      if (nodeA.mass > nodeB.mass) {
+        this.mergeNodes(nodeA, nodeB)
+      } else {
+        this.mergeNodes(nodeB, nodeA)
       }
     }
 
