@@ -1,5 +1,4 @@
 import { BasicNode } from "./nodes/BasicNode"
-import Vector2 from "./Vector2"
 import { AbstractNode } from "./nodes/AbstractNode"
 import { BasicTicker } from "./tickers/BasicTicker"
 import { AbstractTicker } from "./tickers/AbstractTicker"
@@ -25,6 +24,7 @@ export class NodalBackground {
   linker: AbstractLinker
 
   max_velocity: number
+  drop_distance: number
 
   constructor(container: Element) {
     this.container = container
@@ -39,6 +39,7 @@ export class NodalBackground {
     const fps = 30
     this.tFps = (1 / fps) * 1000
     this.max_velocity = 20
+    this.drop_distance = 20
   }
 
   resize() {
@@ -100,7 +101,7 @@ export class NodalBackground {
 
       for (let j = i + 1; j < this.nodes.length; j++) {
         const nodeB: AbstractNode = this.nodes[j]
-        let factor = this.ticker.tickBoth(time, nodeA, nodeB)
+        const factor = this.ticker.tickBoth(time, nodeA, nodeB)
 
         if (factor > 0.01) {
           this.linker.renderLink(factor, nodeA, nodeB)
@@ -112,10 +113,10 @@ export class NodalBackground {
       node.render()
 
       if (
-        node.position.x > this.canvas.width + 10 ||
-        node.position.y > this.canvas.height + 10 ||
-        node.position.x < -10 ||
-        node.position.y < -10
+        node.position.x < -this.drop_distance ||
+        node.position.y < -this.drop_distance ||
+        node.position.x > this.canvas.width + this.drop_distance ||
+        node.position.y > this.canvas.height + this.drop_distance
       ) {
         node.recreate(this.canvas.width, this.canvas.height, this.max_velocity)
       }
