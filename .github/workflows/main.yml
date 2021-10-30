@@ -17,13 +17,15 @@ jobs:
         run: npm install
 
       - name: Build storybook
-        run: npm run build-storybook
+        run: |
+          rm -rf docs; \
+          npm run build-storybook
 
       - name: Standardized Version
         run: |
           git config --global user.email "git@polakdavid.com"; \
           git config --global user.name "David Polák"; \
-          npm run standard-version; \
+          npm run standard-version
 
       - name: Commit and push
         run: |
