@@ -7,8 +7,8 @@
   "scripts": {
     "build": "tsc",
     "storybook": "start-storybook -p 6006",
-    "prepare": "husky install",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o pages/",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/david-polak/nodal-background#readme",
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --cache --fix",
-    "*.{ts,tsx,js,jsx,css,md,json}": "prettier --write"
+    "src/**/*.{ts,tsx}": "eslint --cache --fix",
+    "src/**/*.{ts,tsx,js,jsx,css,md,json}": "prettier --write"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
