@@ -7,9 +7,9 @@
   "scripts": {
     "build": "tsc",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o docs/",
+    "build-storybook": "build-storybook --quiet -o docs/",
     "prepare": "husky install",
-    "standard-version": "standard-version",
+    "standard-version": "standard-version --commit-all",
     "test": "jest"
   },
   "repository": {
