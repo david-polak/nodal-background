@@ -33,7 +33,7 @@ export class NodalBackground {
   mouse_handler: MouseHandler
 
   newNodes: Array<AbstractNode> = []
-  mergeNodes: Array<Array<AbstractNode>> = []
+  toMerge: Array<Array<AbstractNode>> = []
 
   target_nodes: number
 
@@ -106,6 +106,19 @@ export class NodalBackground {
     return node
   }
 
+  mergeNodes(nodeA: AbstractNode, nodeB: AbstractNode) {
+    // conservation of momentum
+    nodeA.velocity.x =
+      (nodeA.mass * nodeA.velocity.x + nodeB.mass * nodeB.velocity.x) /
+      (nodeA.mass + nodeB.mass)
+    nodeA.velocity.y =
+      (nodeA.mass * nodeA.velocity.y + nodeB.mass * nodeB.velocity.y) /
+      (nodeA.mass + nodeB.mass)
+    nodeA.mass += nodeB.mass
+
+    nodeB.recreate(this.max_velocity)
+  }
+
   tick(time: number) {
     /* This tick method should come out to O(nlogn), there are alternative
     paths which would sacrifice rendering precision at lower fps for less
@@ -120,16 +133,14 @@ export class NodalBackground {
       this.factors.push([])
     }
 
-    while (this.mergeNodes.length) {
-      const toMerge: Array<AbstractNode> = this.mergeNodes.pop()
+    while (this.toMerge.length) {
+      const toMerge: Array<AbstractNode> = this.toMerge.pop()
       const nodeA: AbstractNode = toMerge[0]
       const nodeB: AbstractNode = toMerge[1]
       if (nodeA.mass > nodeB.mass) {
-        nodeA.mass += nodeB.mass
-        nodeB.recreate(this.max_velocity)
+        this.mergeNodes(nodeA, nodeB)
       } else {
-        nodeB.mass += nodeA.mass
-        nodeA.recreate(this.max_velocity)
+        this.mergeNodes(nodeB, nodeA)
       }
     }
 
@@ -164,7 +175,7 @@ export class NodalBackground {
         let factor = this.factors[i][j]
 
         if (factor === true || factor === false) {
-          this.mergeNodes.push([this.nodes[i], this.nodes[j]])
+          this.toMerge.push([this.nodes[i], this.nodes[j]])
           factor = 1
         }
 
