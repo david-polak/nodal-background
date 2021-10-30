@@ -3,7 +3,7 @@ import { AbstractNode } from "./AbstractNode"
 export class BasicNode extends AbstractNode {
   render() {
     this.context.beginPath()
-    this.context.fillStyle = "#0d8500"
+    this.context.fillStyle = "#111"
     this.context.arc(
       this.position.x,
       this.position.y,
