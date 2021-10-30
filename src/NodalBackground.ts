@@ -24,6 +24,8 @@ export class NodalBackground {
   ticker: AbstractTicker
   linker: AbstractLinker
 
+  max_velocity: number
+
   constructor(container: Element) {
     this.container = container
 
@@ -31,11 +33,12 @@ export class NodalBackground {
     this.direction = true
 
     this.nodes = []
-    this.ticker = new BasicTicker()
+    this.ticker = new BasicTicker(200)
     // this.ticker = new EulerTicker()
 
-    const fps = 60
+    const fps = 30
     this.tFps = (1 / fps) * 1000
+    this.max_velocity = 20
   }
 
   resize() {
@@ -60,8 +63,10 @@ export class NodalBackground {
     // this.nodes[0].velocity = new Vector2(0, 20)
     // this.nodes[1].velocity = new Vector2(20, 0)
 
-    for (let fori = 0; fori < 100; fori++) {
-      this.nodes.push(new BasicNode(this.context, this.width, this.height, 30))
+    for (let fori = 0; fori < 50; fori++) {
+      this.nodes.push(
+        new BasicNode(this.context, this.width, this.height, this.max_velocity)
+      )
     }
 
     this.tPrevious = Date.now()
@@ -88,11 +93,21 @@ export class NodalBackground {
 
     for (let i = 0; i < this.nodes.length; i++) {
       const nodeA: AbstractNode = this.nodes[i]
+
+      nodeA.tick(time)
+
       this.ticker.tickSingle(time, nodeA)
 
       for (let j = i + 1; j < this.nodes.length; j++) {
         const nodeB: AbstractNode = this.nodes[j]
-        const factor = this.ticker.tickBoth(time, nodeA, nodeB)
+        let factor = this.ticker.tickBoth(time, nodeA, nodeB)
+
+        if (nodeA.age < 1) {
+          factor = factor * nodeA.age
+        }
+        if (nodeB.age < 1) {
+          factor = factor * nodeB.age
+        }
 
         if (factor > 0.01) {
           this.linker.renderLink(factor, nodeA, nodeB)
@@ -109,7 +124,12 @@ export class NodalBackground {
         node.position.x < -10 ||
         node.position.y < -10
       ) {
-        node.reposition(this.canvas.width, this.canvas.height)
+        node.recreate(
+          this.canvas.width,
+          this.canvas.height,
+          this.max_velocity,
+          0
+        )
       }
     })
 
