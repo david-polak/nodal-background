@@ -7,6 +7,7 @@ import { StandardLinker } from "./linkers/StandardLinker"
 import Vector2 from "./Vector2"
 import { MouseHandler } from "./MouseHandler"
 import { EulerTicker } from "./tickers/EulerTicker"
+import { FPSCounter } from "./FPSCounter"
 
 export class NodalBackground {
   container: Element
@@ -37,6 +38,8 @@ export class NodalBackground {
 
   factors: Array<Array<number>> = []
 
+  fpsCounter: FPSCounter
+
   constructor(container: Element) {
     this.container = container
 
@@ -47,7 +50,7 @@ export class NodalBackground {
     this.ticker = new BasicTicker(200)
     // this.ticker = new EulerTicker(200)
 
-    const target_fps = 30
+    const target_fps = 10
     this.tFps = (1 / target_fps) * 1000
     this.max_velocity = 20
     this.drop_distance = 20
@@ -68,6 +71,8 @@ export class NodalBackground {
     this.context = this.canvas.getContext("2d")
 
     this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
+
+    this.fpsCounter = new FPSCounter(this.context, true)
 
     this.resize()
 
@@ -106,6 +111,8 @@ export class NodalBackground {
     operations per tick. TODO: Performance Testing */
 
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
+
+    this.fpsCounter.draw(time)
 
     while (this.newNodes.length) {
       this.nodes.push(this.newNodes.pop())
