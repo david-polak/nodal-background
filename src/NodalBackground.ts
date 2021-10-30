@@ -72,7 +72,7 @@ export class NodalBackground {
 
     this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
 
-    this.fpsCounter = new FPSCounter(this.context, true)
+    this.fpsCounter = new FPSCounter(this.context, false)
 
     this.resize()
 

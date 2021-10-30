@@ -46,8 +46,7 @@ export abstract class AbstractNode {
   }
 
   tick(tDelta: number): void {
-    const step = this.age_factor * (tDelta / 1000)
-    this.age = this.age + step
+    this.age = this.age + this.age_factor * (tDelta / 1000)
   }
 
   abstract render(): void
