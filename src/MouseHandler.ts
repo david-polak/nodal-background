@@ -9,6 +9,7 @@ export class MouseHandler {
   active: boolean
   node: AbstractNode
 
+  position: Vector2
   velocity: Vector2
 
   constructor(canvas: HTMLCanvasElement, addNode: CallableFunction) {
@@ -24,7 +25,7 @@ export class MouseHandler {
 
   onMouseDown(event: MouseEvent) {
     const rect = this.canvas.getBoundingClientRect()
-    const position = new Vector2(
+    this.position = new Vector2(
       event.clientX * devicePixelRatio - rect.left,
       event.clientY * devicePixelRatio - rect.top
     )
@@ -32,10 +33,14 @@ export class MouseHandler {
     this.node = this.addNode()
     this.velocity = this.node.velocity
 
-    this.node.position = position
+    this.node.position = this.position
     this.node.velocity = new Vector2(0, 0)
 
     this.active = true
+
+    this.tick = () => {
+      this.node.position = this.position.clone()
+    }
   }
 
   onMouseMove(event: MouseEvent) {
@@ -47,6 +52,7 @@ export class MouseHandler {
       event.clientX * devicePixelRatio - rect.left,
       event.clientY * devicePixelRatio - rect.top
     )
+    this.position = this.node.position
   }
 
   onMouseUp() {
@@ -55,6 +61,9 @@ export class MouseHandler {
     }
     this.node.velocity = this.velocity
     this.active = false
+
+    // eslint-disable-next-line
+    this.tick = () => {}
   }
 
   // eslint-disable-next-line
