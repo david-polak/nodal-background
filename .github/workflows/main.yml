@@ -13,4 +13,7 @@ jobs:
         with:
           node-version: '16'
       - run: npm install
+      - run: |
+          git config --global user.email "git@polakdavid.com"; \
+          git config --global user.name "David Polák"
       - run: npm run standard-version
