@@ -100,7 +100,7 @@ export class NodalBackground {
 
       for (let j = i + 1; j < this.nodes.length; j++) {
         const nodeB: AbstractNode = this.nodes[j]
-        const factor = this.ticker.tickBoth(time, nodeA, nodeB)
+        let factor = this.ticker.tickBoth(time, nodeA, nodeB)
 
         if (factor > 0.01) {
           this.linker.renderLink(factor, nodeA, nodeB)
@@ -117,12 +117,7 @@ export class NodalBackground {
         node.position.x < -10 ||
         node.position.y < -10
       ) {
-        node.recreate(
-          this.canvas.width,
-          this.canvas.height,
-          this.max_velocity,
-          0
-        )
+        node.recreate(this.canvas.width, this.canvas.height, this.max_velocity)
       }
     })
 
