@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.3 (2021-10-30)
+
+
+### Minor changes
+
+* optimize EulerTicker performance ([#7](https://github.com/david-polak/nodal-background/issues/7)) ([bfc7f9d](https://github.com/david-polak/nodal-background/commit/bfc7f9d381addeb939768e18596a52e3c6728f97))
+
 ### 0.0.2 (2021-10-30)
 
 
