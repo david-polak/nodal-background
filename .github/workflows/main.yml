@@ -28,6 +28,6 @@ jobs:
       - name: Commit and push
         run: |
           git add docs && \
-          git commit --ammend --no-edit && \
+          git commit --amend --no-edit && \
           git push --follow-tags origin main
 
