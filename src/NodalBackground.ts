@@ -6,6 +6,8 @@ import { AbstractLinker } from "./linkers/AbstractLinker"
 import { StandardLinker } from "./linkers/StandardLinker"
 import Vector2 from "./Vector2"
 import { MouseHandler } from "./MouseHandler"
+import { EulerTicker } from "./tickers/EulerTicker"
+import { FPSCounter } from "./FPSCounter"
 
 export class NodalBackground {
   container: Element
@@ -32,6 +34,12 @@ export class NodalBackground {
 
   newNodes: Array<AbstractNode> = []
 
+  target_nodes: number
+
+  factors: Array<Array<number>> = []
+
+  fpsCounter: FPSCounter
+
   constructor(container: Element) {
     this.container = container
 
@@ -39,13 +47,14 @@ export class NodalBackground {
     this.direction = true
 
     this.nodes = []
-    this.ticker = new BasicTicker(200)
-    // this.ticker = new EulerTicker()
+    // this.ticker = new BasicTicker(200)
+    this.ticker = new EulerTicker(200)
 
-    const fps = 30
-    this.tFps = (1 / fps) * 1000
+    const target_fps = 200
+    this.tFps = (1 / target_fps) * 1000
     this.max_velocity = 20
     this.drop_distance = 20
+    this.target_nodes = 100
   }
 
   resize() {
@@ -63,12 +72,14 @@ export class NodalBackground {
 
     this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
 
+    this.fpsCounter = new FPSCounter(this.context, true)
+
     this.resize()
 
     this.linker = new StandardLinker(this.context)
 
-    for (let fori = 0; fori < 50; fori++) {
-      this.nodes.push(new BasicNode(this.canvas, this.max_velocity))
+    for (let fori = 0; fori < this.target_nodes; fori++) {
+      this.addNode()
     }
 
     this.tPrevious = Date.now()
@@ -77,8 +88,6 @@ export class NodalBackground {
   }
 
   handleAnimationFrame() {
-    requestAnimationFrame(this.handleAnimationFrame.bind(this))
-
     const now = Date.now()
     const tDelta = now - this.tPrevious
 
@@ -86,6 +95,8 @@ export class NodalBackground {
       this.tick(tDelta)
       this.tPrevious = now - (tDelta % this.tFps)
     }
+
+    requestAnimationFrame(this.handleAnimationFrame.bind(this))
   }
 
   addNode(): AbstractNode {
@@ -95,30 +106,43 @@ export class NodalBackground {
   }
 
   tick(time: number) {
+    /* This tick method should come out to O(nlogn), there are alternative
+    paths which would sacrifice rendering precision at lower fps for less
+    operations per tick. TODO: Performance Testing */
+
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
+
+    this.fpsCounter.draw(time)
 
     while (this.newNodes.length) {
       this.nodes.push(this.newNodes.pop())
+      this.factors.push([])
     }
 
     for (let i = 0; i < this.nodes.length; i++) {
-      const nodeA: AbstractNode = this.nodes[i]
-
-      nodeA.tick(time)
-
-      this.ticker.tickSingle(time, nodeA)
+      // ageing up the node
+      this.nodes[i].tick(time)
 
       for (let j = i + 1; j < this.nodes.length; j++) {
-        const nodeB: AbstractNode = this.nodes[j]
-        const factor = this.ticker.tickBoth(time, nodeA, nodeB)
-
-        if (factor > 0.01) {
-          this.linker.renderLink(factor, nodeA, nodeB)
-        }
+        // simulation step for both nodes
+        this.factors[i][j] = this.ticker.tickBoth(
+          time,
+          this.nodes[i],
+          this.nodes[j]
+        )
       }
     }
 
-    this.nodes.forEach((node: AbstractNode) => {
+    for (let i = 0; i < this.nodes.length; i++) {
+      const node: AbstractNode = this.nodes[i]
+
+      // simulation step for single node
+      this.ticker.tickSingle(time, node)
+
+      // resetting the mouse node's position
+      this.mouse_handler.tick()
+
+      // at this point positions have been updated and we can render
       node.render()
 
       if (
@@ -129,6 +153,15 @@ export class NodalBackground {
       ) {
         node.recreate(this.max_velocity)
       }
-    })
+    }
+
+    for (let i = 0; i < this.nodes.length; i++) {
+      for (let j = i + 1; j < this.nodes.length; j++) {
+        const factor = this.factors[i][j]
+        if (factor > 0.01) {
+          this.linker.renderLink(factor, this.nodes[i], this.nodes[j])
+        }
+      }
+    }
   }
 }

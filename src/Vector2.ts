@@ -23,7 +23,23 @@ class Vector2 {
     return Math.sqrt(distanceX * distanceX + distanceY * distanceY)
   }
 
-  multiplyByFactor(factor: number): Vector2 {
+  subtract(vector: Vector2): Vector2 {
+    this.x = this.x - vector.x
+    this.y = this.y - vector.y
+    return this
+  }
+
+  negate(): Vector2 {
+    this.x = -this.x
+    this.y = -this.y
+    return this
+  }
+
+  magnitude(): number {
+    return Math.sqrt(this.x * this.x + this.y * this.y)
+  }
+
+  multiplyByScalar(factor: number): Vector2 {
     this.x = this.x * factor
     this.y = this.y * factor
     return this
