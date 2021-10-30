@@ -4,6 +4,8 @@ import { BasicTicker } from "./tickers/BasicTicker"
 import { AbstractTicker } from "./tickers/AbstractTicker"
 import { AbstractLinker } from "./linkers/AbstractLinker"
 import { StandardLinker } from "./linkers/StandardLinker"
+import Vector2 from "./Vector2"
+import { MouseHandler } from "./MouseHandler"
 
 export class NodalBackground {
   container: Element
@@ -25,6 +27,10 @@ export class NodalBackground {
 
   max_velocity: number
   drop_distance: number
+
+  mouse_handler: MouseHandler
+
+  newNodes: Array<AbstractNode> = []
 
   constructor(container: Element) {
     this.container = container
@@ -52,29 +58,22 @@ export class NodalBackground {
 
   start() {
     this.canvas = document.createElement("canvas")
+    this.container.appendChild(this.canvas)
     this.context = this.canvas.getContext("2d")
+
+    this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
 
     this.resize()
 
     this.linker = new StandardLinker(this.context)
 
-    // for (let fori = 0; fori < 2; fori++) {
-    //   this.nodes.push(new BasicNode(this.context, this.width, this.height, 100))
-    // }
-    // this.nodes[0].velocity = new Vector2(0, 20)
-    // this.nodes[1].velocity = new Vector2(20, 0)
-
     for (let fori = 0; fori < 50; fori++) {
-      this.nodes.push(
-        new BasicNode(this.context, this.width, this.height, this.max_velocity)
-      )
+      this.nodes.push(new BasicNode(this.canvas, this.max_velocity))
     }
 
     this.tPrevious = Date.now()
 
     requestAnimationFrame(this.handleAnimationFrame.bind(this))
-
-    this.container.appendChild(this.canvas)
   }
 
   handleAnimationFrame() {
@@ -89,8 +88,18 @@ export class NodalBackground {
     }
   }
 
+  addNode(): AbstractNode {
+    const node = new BasicNode(this.canvas, this.max_velocity)
+    this.newNodes.push(node)
+    return node
+  }
+
   tick(time: number) {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
+
+    while (this.newNodes.length) {
+      this.nodes.push(this.newNodes.pop())
+    }
 
     for (let i = 0; i < this.nodes.length; i++) {
       const nodeA: AbstractNode = this.nodes[i]
@@ -118,7 +127,7 @@ export class NodalBackground {
         node.position.x > this.canvas.width + this.drop_distance ||
         node.position.y > this.canvas.height + this.drop_distance
       ) {
-        node.recreate(this.canvas.width, this.canvas.height, this.max_velocity)
+        node.recreate(this.max_velocity)
       }
     })
   }
