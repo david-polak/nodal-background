@@ -3,7 +3,8 @@ import { AbstractTicker } from "./AbstractTicker"
 
 export class EulerTicker extends AbstractTicker {
   /* This class originally relied on Vector2 operations, however profiling
-  showed that any function calls or object creation in here is expensive. */
+   * showed that any function calls or object creation in here is expensive.
+   */
 
   tickSingle(tDelta: number, node: AbstractNode) {
     const scalar = tDelta / 1000
@@ -40,7 +41,6 @@ export class EulerTicker extends AbstractTicker {
 
     const forceAx = -(accelerationX * nodeB.mass * massFactor)
     const forceAy = -(accelerationY * nodeB.mass * massFactor)
-
     const forceBx = accelerationX * nodeA.mass * massFactor
     const forceBy = accelerationY * nodeA.mass * massFactor
 
@@ -49,6 +49,8 @@ export class EulerTicker extends AbstractTicker {
     nodeB.velocity.x += forceBx
     nodeB.velocity.y += forceBy
 
-    return Math.sqrt(forceAx * forceAx + forceAy * forceAy) * 1.5
+    return (
+      Math.sqrt(forceAx * forceAx + forceAy * forceAy) / (tDelta / 1000) / 10
+    )
   }
 }
