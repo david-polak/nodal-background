@@ -1,7 +1,9 @@
+build
+
 # development environment
 .idea/
 
-### Node ###
+### BasicNode ###
 # Logs
 logs
 *.log
@@ -121,6 +123,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-### Node Patch ###
+### BasicNode Patch ###
 # Serverless Webpack directories
 .webpack/
+
