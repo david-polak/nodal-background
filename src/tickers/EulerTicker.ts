@@ -11,7 +11,11 @@ export class EulerTicker extends AbstractTicker {
     node.position.y = node.position.y + node.velocity.y * scalar
   }
 
-  tickBoth(tDelta: number, nodeA: AbstractNode, nodeB: AbstractNode) {
+  tickBoth(
+    tDelta: number,
+    nodeA: AbstractNode,
+    nodeB: AbstractNode
+  ): number | boolean {
     const distanceX = nodeA.position.x - nodeB.position.x
     const distanceY = nodeA.position.y - nodeB.position.y
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
@@ -19,6 +23,9 @@ export class EulerTicker extends AbstractTicker {
     const attraction = 10
 
     if (distance < 10) {
+      if (distance < 10) {
+        return true
+      }
       return 1
     }
     if (distance > 100) {

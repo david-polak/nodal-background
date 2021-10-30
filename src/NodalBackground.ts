@@ -33,10 +33,11 @@ export class NodalBackground {
   mouse_handler: MouseHandler
 
   newNodes: Array<AbstractNode> = []
+  mergeNodes: Array<Array<AbstractNode>> = []
 
   target_nodes: number
 
-  factors: Array<Array<number>> = []
+  factors: Array<Array<number | boolean>> = []
 
   fpsCounter: FPSCounter
 
@@ -119,6 +120,19 @@ export class NodalBackground {
       this.factors.push([])
     }
 
+    while (this.mergeNodes.length) {
+      const toMerge: Array<AbstractNode> = this.mergeNodes.pop()
+      const nodeA: AbstractNode = toMerge[0]
+      const nodeB: AbstractNode = toMerge[1]
+      if (nodeA.mass > nodeB.mass) {
+        nodeA.mass += nodeB.mass
+        nodeB.recreate(this.max_velocity)
+      } else {
+        nodeB.mass += nodeA.mass
+        nodeA.recreate(this.max_velocity)
+      }
+    }
+
     for (let i = 0; i < this.nodes.length; i++) {
       // ageing up the node
       this.nodes[i].tick(time)
@@ -150,7 +164,13 @@ export class NodalBackground {
       const nodeA: AbstractNode = this.nodes[i]
 
       for (let j = i + 1; j < this.nodes.length; j++) {
-        const factor = this.factors[i][j]
+        let factor = this.factors[i][j]
+
+        if (factor === true || factor === false) {
+          this.mergeNodes.push([this.nodes[i], this.nodes[j]])
+          factor = 1
+        }
+
         if (factor > 0.01) {
           this.linker.renderLink(factor, this.nodes[i], this.nodes[j])
         }

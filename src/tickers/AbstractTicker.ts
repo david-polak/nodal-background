@@ -10,6 +10,7 @@ export abstract class AbstractTicker {
     tDelta: number,
     nodeA: AbstractNode,
     nodeB: AbstractNode
-  ): number
+  ): number | boolean
+
   abstract tickSingle(tDelta: number, node: AbstractNode): void
 }
