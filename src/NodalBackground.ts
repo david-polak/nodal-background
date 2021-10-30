@@ -50,7 +50,7 @@ export class NodalBackground {
     // this.ticker = new BasicTicker(200)
     this.ticker = new EulerTicker(200)
 
-    const target_fps = 200
+    const target_fps = 30
     this.tFps = (1 / target_fps) * 1000
     this.max_velocity = 20
     this.drop_distance = 20
@@ -144,23 +144,25 @@ export class NodalBackground {
 
       // at this point positions have been updated and we can render
       node.render()
-
-      if (
-        node.position.x < -this.drop_distance ||
-        node.position.y < -this.drop_distance ||
-        node.position.x > this.canvas.width + this.drop_distance ||
-        node.position.y > this.canvas.height + this.drop_distance
-      ) {
-        node.recreate(this.max_velocity)
-      }
     }
 
     for (let i = 0; i < this.nodes.length; i++) {
+      const nodeA: AbstractNode = this.nodes[i]
+
       for (let j = i + 1; j < this.nodes.length; j++) {
         const factor = this.factors[i][j]
         if (factor > 0.01) {
           this.linker.renderLink(factor, this.nodes[i], this.nodes[j])
         }
+      }
+
+      if (
+        nodeA.position.x < -this.drop_distance ||
+        nodeA.position.y < -this.drop_distance ||
+        nodeA.position.x > this.canvas.width + this.drop_distance ||
+        nodeA.position.y > this.canvas.height + this.drop_distance
+      ) {
+        nodeA.recreate(this.max_velocity)
       }
     }
   }

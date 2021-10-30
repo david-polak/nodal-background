@@ -18,26 +18,29 @@ export class EulerTicker extends AbstractTicker {
 
     const attraction = 10
 
-    if (distance > 10 && distance < 100) {
-      const scalar = Math.pow(distance, -3) * attraction * tDelta
-
-      const accelerationX = (nodeA.position.x - nodeB.position.x) * scalar
-      const accelerationY = (nodeA.position.y - nodeB.position.y) * scalar
-
-      const forceAx = -(accelerationX * nodeA.mass)
-      const forceAy = -(accelerationY * nodeA.mass)
-
-      const forceBx = accelerationX * nodeB.mass
-      const forceBy = accelerationY * nodeB.mass
-
-      nodeA.velocity.x += forceAx
-      nodeA.velocity.y += forceAy
-      nodeB.velocity.x += forceBx
-      nodeB.velocity.y += forceBy
-
-      return Math.sqrt(forceAx * forceAx + forceAy * forceAy) * 1.5
+    if (distance < 10) {
+      return 1
+    }
+    if (distance > 100) {
+      return 0
     }
 
-    return 0
+    const scalar = Math.pow(distance, -3) * attraction * tDelta
+
+    const accelerationX = (nodeA.position.x - nodeB.position.x) * scalar
+    const accelerationY = (nodeA.position.y - nodeB.position.y) * scalar
+
+    const forceAx = -(accelerationX * nodeA.mass)
+    const forceAy = -(accelerationY * nodeA.mass)
+
+    const forceBx = accelerationX * nodeB.mass
+    const forceBy = accelerationY * nodeB.mass
+
+    nodeA.velocity.x += forceAx
+    nodeA.velocity.y += forceAy
+    nodeB.velocity.x += forceBx
+    nodeB.velocity.y += forceBy
+
+    return Math.sqrt(forceAx * forceAx + forceAy * forceAy) * 1.5
   }
 }
