@@ -25,6 +25,7 @@ export interface NodalBackgroundProps {
   mode?: NodalBackgroundMode
 
   linkColor?: string
+  nodeColor?: string
 
   ticker?: typeof AbstractTicker
 }
@@ -35,6 +36,8 @@ export const defaultNodalBackgroundProps: NodalBackgroundProps = {
   mode: NodalBackgroundMode.Gravity,
 
   linkColor: "#000000",
+  nodeColor: "#000000",
+
   ticker: null,
 }
 
@@ -83,21 +86,21 @@ export class NodalBackground {
 
     this.canvas = document.createElement("canvas")
     this.props.container.appendChild(this.canvas)
+    this.context = this.canvas.getContext("2d")
 
-    if (props.mode) {
-      this.mode = props.mode
-    }
-    if (props.ticker) {
-      this.ticker = props.ticker
-    }
+    this.mode = props.mode ? props.mode : this.props.mode
+    this.ticker = props.ticker ? props.ticker : this.props.ticker
+
+    this.ticker = props.ticker ? props.ticker : this.props.ticker
+
+    this.linker = new StandardLinker(this.context)
+    this.linkColor = props.linkColor ? props.linkColor : this.props.linkColor
+
+    this.nodes = []
+    this.nodeColor = props.nodeColor ? props.nodeColor : this.props.nodeColor
 
     this.counter = 0
     this.direction = true
-
-    this.nodes = []
-    // this.ticker = new BasicTicker(200)
-    // this.ticker = new EulerTicker(150)
-    // this.ticker = new AntiEulerTicker(150)
 
     const target_fps = 50
     this.tFps = (1 / target_fps) * 1000
@@ -105,28 +108,17 @@ export class NodalBackground {
     this.drop_distance = 0
     this.target_nodes = 100
 
-    this.context = this.canvas.getContext("2d")
-
     this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
-
     this.fpsCounter = new FPSCounter(this.context, false)
-
     this.resize()
 
     // this._resizeListener = this.resize.bind(this)
     window.addEventListener("resize", this._resizeListener)
-
-    this.linker = new StandardLinker(this.context)
-    this.linkColor = this.props.linkColor
-
     for (let fori = 0; fori < this.target_nodes; fori++) {
       this.addNode()
     }
-
     this.tPrevious = Date.now()
-
     this._alive = true
-
     requestAnimationFrame(this.handleAnimationFrame.bind(this))
   }
 
@@ -134,8 +126,17 @@ export class NodalBackground {
     this.linker.linkColor = linkColor
   }
 
+  set nodeColor(nodeColor: string) {
+    this.nodes.forEach((node) => (node.nodeColor = nodeColor))
+  }
+
   set ticker(ticker: typeof AbstractTicker) {
+    if (!ticker) {
+      return
+    }
+    console.log("ticker", ticker)
     const instantiable = ticker as InstantiableAbstractTicker<AbstractTicker>
+    console.log("instantiable", instantiable)
     this._ticker = new instantiable(150)
   }
 
@@ -191,6 +192,7 @@ export class NodalBackground {
 
   addNode(): AbstractNode {
     const node = new BasicNode(this.canvas, this.max_velocity)
+    node.nodeColor = this.props.nodeColor
     this.newNodes.push(node)
     return node
   }

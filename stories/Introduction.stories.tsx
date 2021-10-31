@@ -27,6 +27,12 @@ const argTypes: ArgTypes = {
     description: "Color of the node links.",
     type: "color",
   },
+  nodeColor: {
+    control: 'color',
+    defaultValue: '#222222',
+    description: "Color of the nodes.",
+    type: "color",
+  },
 }
 
 export default {
@@ -35,6 +41,7 @@ export default {
   argTypes: {
     mode: argTypes.mode,
     linkColor: argTypes.linkColor,
+    nodeColor: argTypes.nodeColor,
   },
   parameters: {
     controls: {

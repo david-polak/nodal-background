@@ -1,9 +1,11 @@
 import Vector2 from "../Vector2"
 import getRandomArbitrary from "../utils/getRandomArbitrary"
+import hexRgb, { RgbaObject } from "hex-rgb"
 
 export abstract class AbstractNode {
-  context: CanvasRenderingContext2D
-  canvas: HTMLCanvasElement
+  protected _canvas: HTMLCanvasElement
+  protected _context: CanvasRenderingContext2D
+  protected _nodeColor: RgbaObject
 
   position: Vector2
   velocity: Vector2
@@ -19,10 +21,14 @@ export abstract class AbstractNode {
     age?: number,
     age_factor?: number
   ) {
-    this.canvas = canvas
-    this.context = canvas.getContext("2d")
+    this._canvas = canvas
+    this._context = canvas.getContext("2d")
 
     this.recreate(max_velocity, mass, age, age_factor)
+  }
+
+  set nodeColor(nodeColor: string) {
+    this._nodeColor = hexRgb(nodeColor)
   }
 
   recreate(
@@ -38,8 +44,8 @@ export abstract class AbstractNode {
     this.mass = mass || 1.5
 
     this.position = new Vector2(
-      getRandomArbitrary(0, this.canvas.width),
-      getRandomArbitrary(0, this.canvas.height)
+      getRandomArbitrary(0, this._canvas.width),
+      getRandomArbitrary(0, this._canvas.height)
     )
 
     this.velocity = new Vector2(
