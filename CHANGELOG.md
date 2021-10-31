@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.4 (2021-10-31)
+
+
+### Minor changes
+
+* add demo link to readme ([fc739eb](https://github.com/david-polak/nodal-background/commit/fc739eb9fe7e78389ce7fecc0ad5e925122b2b73))
+
 ### 0.0.3 (2021-10-31)
 
 
