@@ -15,28 +15,45 @@ All notable changes to this project will be documented in this file. See [standa
 * check pixelTarget to 1200 ([0a40165](https://github.com/david-polak/nodal-background/commit/0a40165bcbf1dbc047a3bb522cd0100c287677ab))
 * update default numberOfNodes ([2f966b6](https://github.com/david-polak/nodal-background/commit/2f966b6d3fb6d66d2b293dd14d5a03e33907a520))
 
-### 0.0.4 (2021-10-31)
+### [0.0.4](https://github.com/david-polak/nodal-background/compare/v0.0.3...v0.0.4) (2021-10-31)
+
+
+### Features
+
+* add onWheel mass adjustment of a new node ([0ae6e7b](https://github.com/david-polak/nodal-background/commit/0ae6e7b90f854ac05c92f3b02b79da87b57a5060))
+* improve node merging ([821f2af](https://github.com/david-polak/nodal-background/commit/821f2af60079eec07a5c73938c9c526f2978472b))
+* spec out the introduction page ([1879962](https://github.com/david-polak/nodal-background/commit/18799628cc42798441628d52faaae1ff70caa8a8))
+* unify props setters ([5d05f55](https://github.com/david-polak/nodal-background/commit/5d05f55ea5f680dce69b8a9025102be09e91c0b4))
 
 
 ### Minor changes
 
+* add color persistence for mouse nodes ([008d4bc](https://github.com/david-polak/nodal-background/commit/008d4bcf5643c93f4f7029f327ca743e09495dfb))
 * add demo link to readme ([fc739eb](https://github.com/david-polak/nodal-background/commit/fc739eb9fe7e78389ce7fecc0ad5e925122b2b73))
+* remove devicePixelRatio from MouseHandler ([3eeeee3](https://github.com/david-polak/nodal-background/commit/3eeeee340b3ce01288c947f414e8cdac55dcbf42))
+* remove devicePixelRation from onMouseDown ([ae4b733](https://github.com/david-polak/nodal-background/commit/ae4b73309973bb02ef2dcec70a21b085c5eed302))
 
-### 0.0.3 (2021-10-31)
+### [0.0.3](https://github.com/david-polak/nodal-background/compare/v0.0.2...v0.0.3) (2021-10-31)
 
 
 ### Features
 
 * add numbeOfNodes storybook control ([0a5e56a](https://github.com/david-polak/nodal-background/commit/0a5e56a87195bff70fce493eefc365c4b8f98b54))
+* add numberOfNodes and preserveNumberOfNodes ([2898383](https://github.com/david-polak/nodal-background/commit/2898383a21626826daf024a4295cb403bfea883c))
 
-### 0.0.2 (2021-10-31)
+
+### Minor changes
+
+* fix neighbour node link oversaturation ([6718f7e](https://github.com/david-polak/nodal-background/commit/6718f7e3da58860b96d276a2a86896c3867dc895))
+
+### [0.0.2](https://github.com/david-polak/nodal-background/compare/v0.0.1...v0.0.2) (2021-10-31)
 
 
 ### Features
 
 * add CNAME to the CI workflow ([731c53d](https://github.com/david-polak/nodal-background/commit/731c53d952b61ea7b86dfbda439011fc1d02e03e))
 
-### 0.0.1 (2021-10-31)
+### [0.0.1](https://github.com/david-polak/nodal-background/compare/v0.0.0...v0.0.1) (2021-10-31)
 
 
 ### Features
@@ -60,7 +77,6 @@ All notable changes to this project will be documented in this file. See [standa
 * implement MouseHandler ([#2](https://github.com/david-polak/nodal-background/issues/2)) ([912c593](https://github.com/david-polak/nodal-background/commit/912c593bd3ab699038190a47f9fc2c1618783aff))
 * implement the euler nbody solver ([#6](https://github.com/david-polak/nodal-background/issues/6)) ([5aadb05](https://github.com/david-polak/nodal-background/commit/5aadb055bb49f471e2fa5c5074d4b6f4b13e5986))
 * init npm and add gitignore ([f9dba1a](https://github.com/david-polak/nodal-background/commit/f9dba1a68419d11d2bec9a56aa8dc791b29c88b5))
-* license project under MIT ([55db4ad](https://github.com/david-polak/nodal-background/commit/55db4adefe783faefad02202a25f1c08b4fe2dd2))
 * remove the start method ([d8a9350](https://github.com/david-polak/nodal-background/commit/d8a9350321a746af7ee35b82199da8c9da4e152e))
 * reset stroke styles ([7f083fa](https://github.com/david-polak/nodal-background/commit/7f083fa7b7395d76ee947b8ac4501aa93b748758))
 * sketch out the main use hook ([ce7a522](https://github.com/david-polak/nodal-background/commit/ce7a522d5f89b345bcd58cada4b7ecd08b91781f))
