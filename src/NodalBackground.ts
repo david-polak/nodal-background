@@ -71,7 +71,7 @@ export class NodalBackground {
     const target_fps = 50
     this.tFps = (1 / target_fps) * 1000
     this.max_velocity = 20
-    this.drop_distance = 20
+    this.drop_distance = 0
     this.target_nodes = 100
   }
 
@@ -156,9 +156,6 @@ export class NodalBackground {
     }
 
     for (let i = 0; i < this.nodes.length; i++) {
-      // ageing up the node
-      this.nodes[i].tick(time)
-
       for (let j = i + 1; j < this.nodes.length; j++) {
         // simulation step for both nodes
         this.factors[i][j] = this.ticker.tickBoth(
@@ -218,7 +215,15 @@ export class NodalBackground {
         nodeA.position.x > this.canvas.width + this.drop_distance ||
         nodeA.position.y > this.canvas.height + this.drop_distance
       ) {
-        nodeA.recreate(this.max_velocity)
+        if (nodeA.age < 0) {
+          nodeA.recreate(this.max_velocity)
+        } else if (nodeA.age > 1) {
+          nodeA.age = 1
+        } else {
+          nodeA.deAgeNode(time)
+        }
+      } else {
+        nodeA.ageNode(time)
       }
     }
   }

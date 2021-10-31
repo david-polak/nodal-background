@@ -8,7 +8,8 @@ export abstract class AbstractNode {
   position: Vector2
   velocity: Vector2
   age: number
-  age_factor: number
+  ageFactor: number
+  deAgeFactor: number
   mass: number
 
   constructor(
@@ -28,10 +29,12 @@ export abstract class AbstractNode {
     max_velocity: number,
     mass?: number,
     age?: number,
-    age_factor?: number
+    ageFactor?: number,
+    deAgeFactor?: number
   ): void {
     this.age = age || 0
-    this.age_factor = age_factor || 0.5
+    this.ageFactor = ageFactor || 0.5
+    this.deAgeFactor = deAgeFactor || 2
     this.mass = mass || 1.5
 
     this.position = new Vector2(
@@ -45,8 +48,12 @@ export abstract class AbstractNode {
     )
   }
 
-  tick(tDelta: number): void {
-    this.age = this.age + this.age_factor * (tDelta / 1000)
+  ageNode(tDelta: number): void {
+    this.age = this.age + this.ageFactor * (tDelta / 1000)
+  }
+
+  deAgeNode(tDelta: number): void {
+    this.age = this.age - this.deAgeFactor * (tDelta / 1000)
   }
 
   abstract render(): void
