@@ -24,12 +24,14 @@ export class AntiEulerTicker extends AbstractTicker {
     const attraction = 10
     const massFactor = 1
 
-    if (distance < 10) {
-      if (distance < 5) {
-        return true
-      }
+    if (distance < Math.sqrt((nodeA.mass + nodeB.mass) / Math.PI)) {
+      return true
+    }
+
+    if (distance < 1) {
       return (nodeA.age < 1 ? nodeA.age : 1) * (nodeB.age < 1 ? nodeB.age : 1)
     }
+
     if (distance > this.maxDistance) {
       return 0
     }
