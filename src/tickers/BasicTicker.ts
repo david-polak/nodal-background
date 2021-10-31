@@ -3,21 +3,32 @@ import { AbstractTicker } from "./AbstractTicker"
 
 export class BasicTicker extends AbstractTicker {
   tickSingle(tDelta: number, node: AbstractNode): void {
-    node.position.add(node.velocity.clone().multiplyByScalar(tDelta / 1000))
+    const scalar = tDelta / 1000
+    node.position.x = node.position.x + node.velocity.x * scalar
+    node.position.y = node.position.y + node.velocity.y * scalar
   }
 
-  tickBoth(tDelta: number, nodeA: AbstractNode, nodeB: AbstractNode): number {
-    let factor =
-      (nodeA.position.distance(nodeB.position) - this.max_distance) /
-      (0 - this.max_distance)
+  tickBoth(
+    tDelta: number,
+    nodeA: AbstractNode,
+    nodeB: AbstractNode
+  ): number | boolean {
+    const distanceX = nodeA.position.x - nodeB.position.x
+    const distanceY = nodeA.position.y - nodeB.position.y
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
 
-    if (nodeA.age < 1) {
-      factor = factor * nodeA.age
-    }
-    if (nodeB.age < 1) {
-      factor = factor * nodeB.age
+    if (distance < 10) {
+      return 1
     }
 
-    return factor
+    if (distance > this.maxDistance) {
+      return 0
+    }
+
+    return (
+      ((distance - this.maxDistance) / (0 - this.maxDistance)) *
+      (nodeA.age < 1 ? nodeA.age : 1) *
+      (nodeB.age < 1 ? nodeB.age : 1)
+    )
   }
 }

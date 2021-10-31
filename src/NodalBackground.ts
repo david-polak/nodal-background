@@ -1,7 +1,10 @@
 import { BasicNode } from "./nodes/BasicNode"
 import { AbstractNode } from "./nodes/AbstractNode"
 import { BasicTicker } from "./tickers/BasicTicker"
-import { AbstractTicker } from "./tickers/AbstractTicker"
+import {
+  AbstractTicker,
+  InstantiableAbstractTicker,
+} from "./tickers/AbstractTicker"
 import { AbstractLinker } from "./linkers/AbstractLinker"
 import { StandardLinker } from "./linkers/StandardLinker"
 import Vector2 from "./Vector2"
@@ -10,24 +13,43 @@ import { EulerTicker } from "./tickers/EulerTicker"
 import { FPSCounter } from "./FPSCounter"
 import { AntiEulerTicker } from "./tickers/AntiEulerTicker"
 
+export enum NodalBackgroundMode {
+  Gravity = "Gravity",
+  AntiGravity = "AntiGravity",
+  Simple = "Simple",
+}
+
 export interface NodalBackgroundProps {
   container: Element
 
+  mode?: NodalBackgroundMode
+
   linkColor?: string
+
+  ticker?: typeof AbstractTicker
 }
 
 export const defaultNodalBackgroundProps: NodalBackgroundProps = {
   container: null,
 
+  mode: NodalBackgroundMode.Gravity,
+
   linkColor: "#000000",
+  ticker: null,
 }
 
 export class NodalBackground {
   props: NodalBackgroundProps
 
+  protected canvas: HTMLCanvasElement
+
+  protected _resizeListener: any
+  protected _alive: boolean
+
+  protected _ticker: AbstractTicker
+
   width: number
   height: number
-  canvas: HTMLCanvasElement
   context: CanvasRenderingContext2D
 
   counter: number
@@ -38,7 +60,6 @@ export class NodalBackground {
 
   nodes: Array<AbstractNode>
 
-  ticker: AbstractTicker
   linker: AbstractLinker
 
   max_velocity: number
@@ -55,19 +76,28 @@ export class NodalBackground {
 
   fpsCounter: FPSCounter
 
-  protected _resizeListener: any
-  protected _alive: boolean
-
   constructor(props?: NodalBackgroundProps) {
+    console.log(props)
+
     this.props = { ...defaultNodalBackgroundProps, ...props }
+
+    this.canvas = document.createElement("canvas")
+    this.props.container.appendChild(this.canvas)
+
+    if (props.mode) {
+      this.mode = props.mode
+    }
+    if (props.ticker) {
+      this.ticker = props.ticker
+    }
 
     this.counter = 0
     this.direction = true
 
     this.nodes = []
     // this.ticker = new BasicTicker(200)
-    this.ticker = new EulerTicker(150)
-    this.ticker = new AntiEulerTicker(150)
+    // this.ticker = new EulerTicker(150)
+    // this.ticker = new AntiEulerTicker(150)
 
     const target_fps = 50
     this.tFps = (1 / target_fps) * 1000
@@ -75,8 +105,6 @@ export class NodalBackground {
     this.drop_distance = 0
     this.target_nodes = 100
 
-    this.canvas = document.createElement("canvas")
-    this.props.container.appendChild(this.canvas)
     this.context = this.canvas.getContext("2d")
 
     this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
@@ -89,7 +117,7 @@ export class NodalBackground {
     window.addEventListener("resize", this._resizeListener)
 
     this.linker = new StandardLinker(this.context)
-    this.linker.linkColor = this.props.linkColor
+    this.linkColor = this.props.linkColor
 
     for (let fori = 0; fori < this.target_nodes; fori++) {
       this.addNode()
@@ -104,6 +132,23 @@ export class NodalBackground {
 
   set linkColor(linkColor: string) {
     this.linker.linkColor = linkColor
+  }
+
+  set ticker(ticker: typeof AbstractTicker) {
+    const instantiable = ticker as InstantiableAbstractTicker<AbstractTicker>
+    this._ticker = new instantiable(150)
+  }
+
+  set mode(mode: NodalBackgroundMode) {
+    if (mode === NodalBackgroundMode.Gravity) {
+      this._ticker = new EulerTicker(150)
+    } else if (mode === NodalBackgroundMode.AntiGravity) {
+      this._ticker = new AntiEulerTicker(150)
+    } else if (mode === NodalBackgroundMode.Simple) {
+      this._ticker = new BasicTicker(150)
+    } else {
+      this._ticker = new EulerTicker(150)
+    }
   }
 
   destroy() {
@@ -182,7 +227,7 @@ export class NodalBackground {
     for (let i = 0; i < this.nodes.length; i++) {
       for (let j = i + 1; j < this.nodes.length; j++) {
         // simulation step for both nodes
-        this.factors[i][j] = this.ticker.tickBoth(
+        this.factors[i][j] = this._ticker.tickBoth(
           time,
           this.nodes[i],
           this.nodes[j]
@@ -194,7 +239,7 @@ export class NodalBackground {
       const node: AbstractNode = this.nodes[i]
 
       // simulation step for single node
-      this.ticker.tickSingle(time, node)
+      this._ticker.tickSingle(time, node)
 
       // resetting the mouse node's position
       this.mouse_handler.tick()

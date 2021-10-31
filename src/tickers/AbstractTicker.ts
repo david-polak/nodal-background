@@ -1,10 +1,14 @@
 import { AbstractNode } from "../nodes/AbstractNode"
 
-export abstract class AbstractTicker {
-  max_distance: number
+export type InstantiableAbstractTicker<T extends AbstractTicker> = {
+  new (maxDistance: number): T
+}
 
-  constructor(max_distance: number) {
-    this.max_distance = max_distance
+export abstract class AbstractTicker {
+  maxDistance: number
+
+  constructor(maxDistance: number) {
+    this.maxDistance = maxDistance
   }
 
   abstract tickBoth(

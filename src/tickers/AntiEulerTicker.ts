@@ -30,7 +30,7 @@ export class AntiEulerTicker extends AbstractTicker {
       }
       return 1
     }
-    if (distance > this.max_distance) {
+    if (distance > this.maxDistance) {
       return 0
     }
 
@@ -50,7 +50,7 @@ export class AntiEulerTicker extends AbstractTicker {
     nodeB.velocity.y += forceBy
 
     return (
-      ((distance - this.max_distance) / (0 - this.max_distance)) *
+      ((distance - this.maxDistance) / (0 - this.maxDistance)) *
       (nodeA.age < 1 ? nodeA.age : 1) *
       (nodeB.age < 1 ? nodeB.age : 1)
     )

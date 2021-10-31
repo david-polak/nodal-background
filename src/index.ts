@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 import { NodalBackground, NodalBackgroundProps } from "./NodalBackground"
 
 export function useNodalBackground(props: NodalBackgroundProps) {
-  const { linkColor } = props
+  console.log(props)
+  const { linkColor, mode } = props
 
   const [container, setContainer] = useState(props.container)
   const [nodalBackground, setNodalBackground] = useState(null)
@@ -23,6 +24,12 @@ export function useNodalBackground(props: NodalBackgroundProps) {
       nodalBackground.linkColor = linkColor
     }
   }, [linkColor])
+
+  useEffect(() => {
+    if (mode && nodalBackground) {
+      nodalBackground.mode = mode
+    }
+  }, [mode])
 
   return {
     setContainer,

@@ -21,7 +21,7 @@ export class EulerTicker extends AbstractTicker {
     const distanceY = nodeA.position.y - nodeB.position.y
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
 
-    const attraction = 10
+    const attraction = 5
     const massFactor = 1
 
     if (distance < 10) {
@@ -30,7 +30,7 @@ export class EulerTicker extends AbstractTicker {
       }
       return 1
     }
-    if (distance > this.max_distance) {
+    if (distance > this.maxDistance) {
       return 0
     }
 
@@ -50,7 +50,7 @@ export class EulerTicker extends AbstractTicker {
     nodeB.velocity.y += forceBy
 
     return (
-      ((distance - this.max_distance) / (0 - this.max_distance)) *
+      ((distance - this.maxDistance) / (0 - this.maxDistance)) *
       (nodeA.age < 1 ? nodeA.age : 1) *
       (nodeB.age < 1 ? nodeB.age : 1)
     )
