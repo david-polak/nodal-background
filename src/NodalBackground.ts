@@ -159,7 +159,7 @@ export class NodalBackground {
     this.props.numberOfNodes = numberOfNodes
 
     const pixels = this.canvas.width * this.canvas.height
-    const pixelTarget = 1500 * 1500
+    const pixelTarget = 1200 * 1200
     this._adjustedNumberOfNodes = (pixels / pixelTarget) * numberOfNodes
 
     while (
