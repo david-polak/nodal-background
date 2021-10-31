@@ -36,7 +36,7 @@ export const defaultNodalBackgroundProps: NodalBackgroundProps = {
   container: null,
 
   mode: NodalBackgroundMode.Gravity,
-  numberOfNodes: 120,
+  numberOfNodes: 100,
   preserveNumberOfNodes: true,
 
   linkColor: "#000000",
@@ -59,6 +59,7 @@ export class NodalBackground {
   protected _nodesToAdd: Array<AbstractNode> = []
   protected _nodesToRemove: Array<AbstractNode> = []
   protected _nodesToMerge: Array<Array<AbstractNode>> = []
+  protected _adjustedNumberOfNodes: number
 
   width: number
   height: number
@@ -156,7 +157,15 @@ export class NodalBackground {
 
   set numberOfNodes(numberOfNodes: number) {
     this.props.numberOfNodes = numberOfNodes
-    while (numberOfNodes > this._nodes.length + this._nodesToAdd.length) {
+
+    const pixels = this.canvas.width * this.canvas.height
+    const pixelTarget = 1500 * 1500
+    this._adjustedNumberOfNodes = (pixels / pixelTarget) * numberOfNodes
+
+    while (
+      this._adjustedNumberOfNodes >
+      this._nodes.length + this._nodesToAdd.length
+    ) {
       this.addNode()
     }
   }
@@ -174,12 +183,14 @@ export class NodalBackground {
   }
 
   protected resize() {
-    console.log("resize")
     this.width = this.props.container.clientWidth * devicePixelRatio
     this.height = this.props.container.clientHeight * devicePixelRatio
 
     this.canvas.width = this.width
     this.canvas.height = this.height
+
+    // recalculate the _adjustedNumberOfNodes
+    this.numberOfNodes = this.props.numberOfNodes
   }
 
   handleAnimationFrame() {
@@ -234,7 +245,6 @@ export class NodalBackground {
       const node = this._nodesToRemove.pop()
       const index = this._nodes.findIndex((n) => n === node)
       this._nodes.splice(index, 1)
-      console.log("removed node", index, this._nodes.length)
     }
 
     while (this._nodesToAdd.length) {
@@ -308,7 +318,7 @@ export class NodalBackground {
 
           if (
             this._nodes.length + this._nodesToRemove.length >
-            this.props.numberOfNodes
+            this._adjustedNumberOfNodes
           ) {
             this._nodesToRemove.push(nodeA)
           } else {
