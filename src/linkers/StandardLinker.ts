@@ -3,10 +3,13 @@ import { AbstractNode } from "../nodes/AbstractNode"
 
 export class StandardLinker extends AbstractLinker {
   renderLink(factor: number, nodeA: AbstractNode, nodeB: AbstractNode): void {
-    this.context.beginPath()
-    this.context.strokeStyle = `rgba(1,1,1,${factor})`
-    this.context.moveTo(nodeA.position.x, nodeA.position.y)
-    this.context.lineTo(nodeB.position.x, nodeB.position.y)
-    this.context.stroke()
+    this._context.beginPath()
+
+    this._context.strokeStyle = `rgba(${this._linkColor.red},${this._linkColor.green},${this._linkColor.blue},${factor})`
+
+    this._context.moveTo(nodeA.position.x, nodeA.position.y)
+    this._context.lineTo(nodeB.position.x, nodeB.position.y)
+
+    this._context.stroke()
   }
 }

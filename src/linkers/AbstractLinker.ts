@@ -1,10 +1,16 @@
 import { AbstractNode } from "../nodes/AbstractNode"
+import hexRgb, { RgbaObject } from "hex-rgb"
 
 export abstract class AbstractLinker {
-  context: CanvasRenderingContext2D
+  protected _context: CanvasRenderingContext2D
+  protected _linkColor: RgbaObject
 
   constructor(context: CanvasRenderingContext2D) {
-    this.context = context
+    this._context = context
+  }
+
+  set linkColor(linkColor: string) {
+    this._linkColor = hexRgb(linkColor)
   }
 
   abstract renderLink(

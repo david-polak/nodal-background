@@ -45,6 +45,7 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
+    "hex-rgb": "^5.0.0",
     "react": "^17.0.2"
   }
 }

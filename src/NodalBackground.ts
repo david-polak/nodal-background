@@ -10,8 +10,21 @@ import { EulerTicker } from "./tickers/EulerTicker"
 import { FPSCounter } from "./FPSCounter"
 import { AntiEulerTicker } from "./tickers/AntiEulerTicker"
 
-export class NodalBackground {
+export interface NodalBackgroundProps {
   container: Element
+
+  linkColor?: string
+}
+
+export const defaultNodalBackgroundProps: NodalBackgroundProps = {
+  container: null,
+
+  linkColor: "#000000",
+}
+
+export class NodalBackground {
+  props: NodalBackgroundProps
+
   width: number
   height: number
   canvas: HTMLCanvasElement
@@ -42,8 +55,10 @@ export class NodalBackground {
 
   fpsCounter: FPSCounter
 
-  constructor(container: Element) {
-    this.container = container
+  constructor(props?: NodalBackgroundProps) {
+    this.props = { ...defaultNodalBackgroundProps, ...props }
+
+    console.log("TODO: BIND RESIZE")
 
     this.counter = 0
     this.direction = true
@@ -60,9 +75,13 @@ export class NodalBackground {
     this.target_nodes = 100
   }
 
+  set linkColor(linkColor: string) {
+    this.linker.linkColor = linkColor
+  }
+
   resize() {
-    this.width = this.container.clientWidth * devicePixelRatio
-    this.height = this.container.clientHeight * devicePixelRatio
+    this.width = this.props.container.clientWidth * devicePixelRatio
+    this.height = this.props.container.clientHeight * devicePixelRatio
 
     this.canvas.width = this.width
     this.canvas.height = this.height
@@ -70,7 +89,7 @@ export class NodalBackground {
 
   start() {
     this.canvas = document.createElement("canvas")
-    this.container.appendChild(this.canvas)
+    this.props.container.appendChild(this.canvas)
     this.context = this.canvas.getContext("2d")
 
     this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
@@ -80,6 +99,7 @@ export class NodalBackground {
     this.resize()
 
     this.linker = new StandardLinker(this.context)
+    this.linker.linkColor = this.props.linkColor
 
     for (let fori = 0; fori < this.target_nodes; fori++) {
       this.addNode()
