@@ -26,8 +26,8 @@ export class MouseHandler {
   onMouseDown(event: MouseEvent) {
     const rect = this.canvas.getBoundingClientRect()
     this.position = new Vector2(
-      event.clientX * devicePixelRatio - rect.left,
-      event.clientY * devicePixelRatio - rect.top
+      event.clientX - rect.left,
+      event.clientY - rect.top
     )
 
     this.node = this.addNode()
