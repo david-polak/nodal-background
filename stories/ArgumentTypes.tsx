@@ -50,7 +50,7 @@ export const ArgumentTypes: ArgTypes = {
     },
     table: {
       type: { summary: 'number' },
-      defaultValue: { summary: 100 },
+      defaultValue: { summary: 120 },
     },
   },
 }

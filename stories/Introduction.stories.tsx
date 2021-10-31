@@ -39,7 +39,6 @@ export default {
 export function Introduction(props: NodalBackgroundProps) {
   return <>
     <NodalBackgroundWrapper {...props} />
-    {/*<div id="content-shadow"/>*/}
     <div id="content">
       <h1>Nodal Background</h1>
       <p>Nodal background is a fully configurable abstract background nodal

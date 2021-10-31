@@ -36,7 +36,7 @@ export const defaultNodalBackgroundProps: NodalBackgroundProps = {
   container: null,
 
   mode: NodalBackgroundMode.Gravity,
-  numberOfNodes: 100,
+  numberOfNodes: 120,
   preserveNumberOfNodes: true,
 
   linkColor: "#000000",
