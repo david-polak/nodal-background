@@ -22,6 +22,11 @@ jobs:
           npm run build-storybook && \
           git add docs
 
+      - name: Add CNAME
+        run: |
+          echo "nodal-background.polakdavid.com" > docs/CNAME; \
+          git add docs
+
       - name: Standardized Version
         run: |
           git config --global user.email "git@polakdavid.com"; \
