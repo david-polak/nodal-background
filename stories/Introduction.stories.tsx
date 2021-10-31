@@ -2,6 +2,8 @@ import { Meta } from '@storybook/react';
 import {NodalBackgroundWrapper} from "./NodalBackgroundWrapper";
 import {NodalBackgroundProps} from "../src/NodalBackground";
 
+import "./Introduction.css"
+
 export default {
   title: 'Introduction',
   component: Introduction,

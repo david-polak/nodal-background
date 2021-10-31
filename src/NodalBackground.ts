@@ -61,9 +61,6 @@ export class NodalBackground {
   constructor(props?: NodalBackgroundProps) {
     this.props = { ...defaultNodalBackgroundProps, ...props }
 
-    this._resizeListener = this.resize.bind(this)
-    window.addEventListener("resize", this._resizeListener)
-
     this.counter = 0
     this.direction = true
 
@@ -77,6 +74,32 @@ export class NodalBackground {
     this.max_velocity = 20
     this.drop_distance = 0
     this.target_nodes = 100
+
+    this.canvas = document.createElement("canvas")
+    this.props.container.appendChild(this.canvas)
+    this.context = this.canvas.getContext("2d")
+
+    this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
+
+    this.fpsCounter = new FPSCounter(this.context, false)
+
+    this.resize()
+
+    // this._resizeListener = this.resize.bind(this)
+    window.addEventListener("resize", this._resizeListener)
+
+    this.linker = new StandardLinker(this.context)
+    this.linker.linkColor = this.props.linkColor
+
+    for (let fori = 0; fori < this.target_nodes; fori++) {
+      this.addNode()
+    }
+
+    this.tPrevious = Date.now()
+
+    this._alive = true
+
+    requestAnimationFrame(this.handleAnimationFrame.bind(this))
   }
 
   set linkColor(linkColor: string) {
@@ -95,37 +118,13 @@ export class NodalBackground {
     console.log("TODO: FINISH CLEANUP!")
   }
 
-  resize() {
+  protected resize() {
+    console.log("resize")
     this.width = this.props.container.clientWidth * devicePixelRatio
     this.height = this.props.container.clientHeight * devicePixelRatio
 
     this.canvas.width = this.width
     this.canvas.height = this.height
-  }
-
-  start() {
-    this.canvas = document.createElement("canvas")
-    this.props.container.appendChild(this.canvas)
-    this.context = this.canvas.getContext("2d")
-
-    this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
-
-    this.fpsCounter = new FPSCounter(this.context, false)
-
-    this.resize()
-
-    this.linker = new StandardLinker(this.context)
-    this.linker.linkColor = this.props.linkColor
-
-    for (let fori = 0; fori < this.target_nodes; fori++) {
-      this.addNode()
-    }
-
-    this.tPrevious = Date.now()
-
-    this._alive = true
-
-    requestAnimationFrame(this.handleAnimationFrame.bind(this))
   }
 
   handleAnimationFrame() {
@@ -165,9 +164,11 @@ export class NodalBackground {
   }
 
   tick(time: number) {
-    /* This tick method should come out to O(nlogn), there are alternative
-    paths which would sacrifice rendering precision at lower fps for less
-    operations per tick. TODO: Performance Testing */
+    /*
+     * This tick method should come out to O(nlogn), there are alternative
+     * paths which would sacrifice rendering precision at lower fps for less
+     * operations per tick.
+     */
 
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
 

@@ -9,12 +9,11 @@ export function useNodalBackground(props: NodalBackgroundProps) {
 
   useEffect(() => {
     if (container) {
-      const component = new NodalBackground(props)
-      component.start()
-      setNodalBackground(component)
+      const _nodalBackground = new NodalBackground(props)
+      setNodalBackground(_nodalBackground)
 
       return () => {
-        component.destroy()
+        _nodalBackground.destroy()
       }
     }
   }, [container])
