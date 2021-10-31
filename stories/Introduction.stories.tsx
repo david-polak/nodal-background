@@ -8,8 +8,9 @@ import {
   NodalBackgroundProps
 } from "../src/NodalBackground";
 
+import "./common.css"
 import "./Introduction.css"
-import {ArgumentTypes} from "./ArgumentTypes";
+import {ArgumentTypes, DefaultArguments} from "./ArgumentTypes";
 
 export default {
   title: 'Introduction',
@@ -19,6 +20,12 @@ export default {
     linkColor: ArgumentTypes.linkColor,
     nodeColor: ArgumentTypes.nodeColor,
     numberOfNodes: ArgumentTypes.numberOfNodes,
+  },
+  args: {
+    mode: DefaultArguments.mode,
+    linkColor: DefaultArguments.linkColor,
+    nodeColor: DefaultArguments.nodeColor,
+    numberOfNodes: DefaultArguments.numberOfNodes,
   },
   parameters: {
     controls: {

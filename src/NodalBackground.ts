@@ -94,6 +94,8 @@ export class NodalBackground {
 
     this._resizeListener = this.resize.bind(this)
     window.addEventListener("resize", this._resizeListener)
+
+    this.nodeColor = props.nodeColor ? props.nodeColor : this.props.nodeColor
     this.resize()
 
     this.mode = props.mode ? props.mode : this.props.mode
@@ -102,7 +104,6 @@ export class NodalBackground {
     this.linker = new StandardLinker(this.context)
     this.linkColor = props.linkColor ? props.linkColor : this.props.linkColor
 
-    this.nodeColor = props.nodeColor ? props.nodeColor : this.props.nodeColor
     this.numberOfNodes = props.numberOfNodes
       ? props.numberOfNodes
       : this.props.numberOfNodes
