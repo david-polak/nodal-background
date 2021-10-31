@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.3 (2021-10-31)
+
+
+### Features
+
+* add numbeOfNodes storybook control ([0a5e56a](https://github.com/david-polak/nodal-background/commit/0a5e56a87195bff70fce493eefc365c4b8f98b54))
+
 ### 0.0.2 (2021-10-31)
 
 
