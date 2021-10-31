@@ -121,10 +121,12 @@ export class NodalBackground {
   }
 
   set linkColor(linkColor: string) {
+    this.props.linkColor = linkColor
     this.linker.linkColor = linkColor
   }
 
   set nodeColor(nodeColor: string) {
+    this.props.nodeColor = nodeColor
     this._nodes.forEach((node) => (node.nodeColor = nodeColor))
   }
 
