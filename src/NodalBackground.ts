@@ -55,10 +55,14 @@ export class NodalBackground {
 
   fpsCounter: FPSCounter
 
+  protected _resizeListener: any
+  protected _alive: boolean
+
   constructor(props?: NodalBackgroundProps) {
     this.props = { ...defaultNodalBackgroundProps, ...props }
 
-    console.log("TODO: BIND RESIZE")
+    this._resizeListener = this.resize.bind(this)
+    window.addEventListener("resize", this._resizeListener)
 
     this.counter = 0
     this.direction = true
@@ -77,6 +81,18 @@ export class NodalBackground {
 
   set linkColor(linkColor: string) {
     this.linker.linkColor = linkColor
+  }
+
+  destroy() {
+    if (!this._alive) {
+      this._alive = false
+      return
+    }
+    // The rest of this method will execute in the next animation frame.
+
+    window.removeEventListener("resize", this._resizeListener)
+    this.canvas.remove()
+    console.log("TODO: FINISH CLEANUP!")
   }
 
   resize() {
@@ -107,10 +123,17 @@ export class NodalBackground {
 
     this.tPrevious = Date.now()
 
+    this._alive = true
+
     requestAnimationFrame(this.handleAnimationFrame.bind(this))
   }
 
   handleAnimationFrame() {
+    if (!this._alive) {
+      this.destroy()
+      return
+    }
+
     const now = Date.now()
     const tDelta = now - this.tPrevious
 

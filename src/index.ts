@@ -14,7 +14,7 @@ export function useNodalBackground(props: NodalBackgroundProps) {
       setNodalBackground(component)
 
       return () => {
-        console.log("ERROR CLEAN UP NOT IMPLEMENTED")
+        component.destroy()
       }
     }
   }, [container])
