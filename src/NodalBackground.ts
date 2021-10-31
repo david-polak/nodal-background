@@ -84,7 +84,8 @@ export class NodalBackground {
   constructor(props?: NodalBackgroundProps) {
     console.log(props)
 
-    this.props = { ...defaultNodalBackgroundProps, ...props }
+    this.props = { ...defaultNodalBackgroundProps }
+    this.props.container = props.container
 
     this.canvas = document.createElement("canvas")
     this.props.container.appendChild(this.canvas)
@@ -93,8 +94,6 @@ export class NodalBackground {
     this.resize()
 
     this.mode = props.mode ? props.mode : this.props.mode
-    this.ticker = props.ticker ? props.ticker : this.props.ticker
-
     this.ticker = props.ticker ? props.ticker : this.props.ticker
 
     this.linker = new StandardLinker(this.context)
@@ -134,13 +133,14 @@ export class NodalBackground {
     if (!ticker) {
       return
     }
-    console.log("ticker", ticker)
+    this.props.ticker = ticker
     const instantiable = ticker as InstantiableAbstractTicker<AbstractTicker>
-    console.log("instantiable", instantiable)
     this._ticker = new instantiable(150)
   }
 
   set mode(mode: NodalBackgroundMode) {
+    this.props.mode = mode
+
     if (mode === NodalBackgroundMode.Gravity) {
       this._ticker = new EulerTicker(150)
     } else if (mode === NodalBackgroundMode.AntiGravity) {
