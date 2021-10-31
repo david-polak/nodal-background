@@ -21,6 +21,7 @@ export class MouseHandler {
     this.canvas.addEventListener("mousedown", this.onMouseDown.bind(this))
     this.canvas.addEventListener("mouseup", this.onMouseUp.bind(this))
     this.canvas.addEventListener("mousemove", this.onMouseMove.bind(this))
+    this.canvas.addEventListener("wheel", this.onWheel.bind(this))
   }
 
   onMouseDown(event: MouseEvent) {
@@ -53,6 +54,14 @@ export class MouseHandler {
       event.clientY - rect.top
     )
     this.position = this.node.position
+  }
+
+  onWheel(event: WheelEvent) {
+    if (!this.active) {
+      return
+    }
+    event.preventDefault()
+    this.node.mass = this.node.mass + (event.deltaY > 0 ? -5 : 5)
   }
 
   onMouseUp() {
