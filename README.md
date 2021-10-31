@@ -1,7 +1,7 @@
 work in progress
 
 # Component demo and usage
-* [Demonstartion page](https://nodal-background.polakdavid.com)
+* [Demonstration page](https://nodal-background.polakdavid.com)
 
 ## Videos
 ### Gravity Mode
