@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/david-polak/nodal-background/compare/v0.0.5...v0.0.6) (2021-10-31)
+
+
+### Features
+
+* add Themes to storybook ([f2854b6](https://github.com/david-polak/nodal-background/commit/f2854b6642a881f65dab62b7fa2f60b81dbb585b))
+
+
+### Minor changes
+
+* update changelog ([4983649](https://github.com/david-polak/nodal-background/commit/498364966c54852bda23434ca1d18087f4df604f))
+
 ### [0.0.5](https://github.com/david-polak/nodal-background/compare/v0.0.4...v0.0.5) (2021-10-31)
 
 
