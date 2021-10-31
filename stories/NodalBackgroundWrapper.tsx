@@ -3,8 +3,9 @@ import React from 'react';
 
 import {useEffect, useRef} from "react";
 import {useNodalBackground} from "../src";
+import {NodalBackgroundProps} from "../src/NodalBackground";
 
-export const NodalBackgroundWrapper = (props) => {
+export const NodalBackgroundWrapper = (props: NodalBackgroundProps) => {
   const container = useRef()
 
   const {setContainer} = useNodalBackground({

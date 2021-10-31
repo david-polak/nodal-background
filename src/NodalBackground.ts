@@ -115,11 +115,6 @@ export class NodalBackground {
     this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
     this.fpsCounter = new FPSCounter(this.context, false)
 
-    // this._resizeListener = this.resize.bind(this)
-    window.addEventListener("resize", this._resizeListener)
-    for (let fori = 0; fori < 500; fori++) {
-      this.addNode()
-    }
     this.tPrevious = Date.now()
     this._alive = true
     requestAnimationFrame(this.handleAnimationFrame.bind(this))
