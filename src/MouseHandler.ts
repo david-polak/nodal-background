@@ -25,10 +25,15 @@ export class MouseHandler {
   }
 
   onMouseDown(event: MouseEvent) {
+    console.log(event)
     const rect = this.canvas.getBoundingClientRect()
     this.position = new Vector2(
-      event.clientX - rect.left,
-      event.clientY - rect.top
+      // event.clientX - rect.left,
+      // event.clientY - rect.top
+      ((event.clientX - rect.left) / (rect.right - rect.left)) *
+        this.canvas.width,
+      ((event.clientY - rect.top) / (rect.bottom - rect.top)) *
+        this.canvas.height
     )
 
     this.node = this.addNode()
@@ -50,8 +55,13 @@ export class MouseHandler {
     }
     const rect = this.canvas.getBoundingClientRect()
     this.node.position = new Vector2(
-      event.clientX - rect.left,
-      event.clientY - rect.top
+      // event.clientX - rect.left,
+      // event.clientY - rect.top
+
+      ((event.clientX - rect.left) / (rect.right - rect.left)) *
+        this.canvas.width,
+      ((event.clientY - rect.top) / (rect.bottom - rect.top)) *
+        this.canvas.height
     )
     this.position = this.node.position
   }

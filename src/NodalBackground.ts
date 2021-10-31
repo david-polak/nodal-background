@@ -36,7 +36,7 @@ export const defaultNodalBackgroundProps: NodalBackgroundProps = {
   container: null,
 
   mode: NodalBackgroundMode.Gravity,
-  numberOfNodes: 50,
+  numberOfNodes: 100,
   preserveNumberOfNodes: true,
 
   linkColor: "#000000",
@@ -91,6 +91,8 @@ export class NodalBackground {
     this.props.container.appendChild(this.canvas)
     this.context = this.canvas.getContext("2d")
 
+    this._resizeListener = this.resize.bind(this)
+    window.addEventListener("resize", this._resizeListener)
     this.resize()
 
     this.mode = props.mode ? props.mode : this.props.mode
