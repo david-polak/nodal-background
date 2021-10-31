@@ -18,7 +18,7 @@ export class BasicTicker extends AbstractTicker {
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
 
     if (distance < 10) {
-      return 1
+      return (nodeA.age < 1 ? nodeA.age : 1) * (nodeB.age < 1 ? nodeB.age : 1)
     }
 
     if (distance > this.maxDistance) {

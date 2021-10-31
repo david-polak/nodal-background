@@ -28,7 +28,7 @@ export class AntiEulerTicker extends AbstractTicker {
       if (distance < 5) {
         return true
       }
-      return 1
+      return (nodeA.age < 1 ? nodeA.age : 1) * (nodeB.age < 1 ? nodeB.age : 1)
     }
     if (distance > this.maxDistance) {
       return 0
