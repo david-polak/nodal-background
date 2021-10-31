@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/david-polak/nodal-background/compare/v0.0.4...v0.0.5) (2021-10-31)
+
+
+### Features
+
+* add adjustment of num nodes based on res ([7d3c2f0](https://github.com/david-polak/nodal-background/commit/7d3c2f014d06cbd2ad4ba5740d065de6e7bb2e61))
+
+
+### Minor changes
+
+* check pixelTarget to 1200 ([0a40165](https://github.com/david-polak/nodal-background/commit/0a40165bcbf1dbc047a3bb522cd0100c287677ab))
+* update default numberOfNodes ([2f966b6](https://github.com/david-polak/nodal-background/commit/2f966b6d3fb6d66d2b293dd14d5a03e33907a520))
+
 ### 0.0.4 (2021-10-31)
 
 
