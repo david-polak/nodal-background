@@ -6,6 +6,7 @@ export const DefaultArguments: any = {
   linkColor: "#222222",
   nodeColor: "#222222",
   numberOfNodes: 100,
+  preserveNumberOfNodes: true,
   fps: 30,
   fpsCounter: false,
 }
@@ -39,6 +40,17 @@ export const ArgumentTypes: ArgTypes = {
     table: {
       type: { summary: "number" },
       defaultValue: { summary: 100 },
+    },
+  },
+
+  preserveNumberOfNodes: {
+    description: "Whether to preserve the number of nodes.",
+    control: {
+      type: "boolean",
+    },
+    table: {
+      type: { summary: "boolean" },
+      defaultValue: { summary: true },
     },
   },
 

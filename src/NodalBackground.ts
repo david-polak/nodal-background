@@ -109,6 +109,9 @@ export class NodalBackground {
     this.numberOfNodes = props.numberOfNodes
       ? props.numberOfNodes
       : this.props.numberOfNodes
+    this.preserveNumberOfNodes = props.preserveNumberOfNodes
+      ? props.preserveNumberOfNodes
+      : this.preserveNumberOfNodes
 
     this.fps = props.fps ? props.fps : this.props.fps
     this.fpsCounter = props.fpsCounter
@@ -182,6 +185,10 @@ export class NodalBackground {
   set fpsCounter(fpsCounter: boolean) {
     this.props.fpsCounter = fpsCounter
     this._fpsCounter = new FPSCounter(this._context, fpsCounter)
+  }
+
+  set preserveNumberOfNodes(preserveNumberOfNodes: boolean) {
+    this.props.preserveNumberOfNodes = preserveNumberOfNodes
   }
 
   destroy() {
