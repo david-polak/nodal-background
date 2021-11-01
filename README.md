@@ -26,7 +26,7 @@ An abstract animated nodal background JavaScript canvas library.
 # Usage
 
 ## Installation
-[![npm version](https://badge.fury.io/js/nodal-background.svg)](https://www.npmjs.com/package/nodal-background)
+[NPM Package link](https://www.npmjs.com/package/nodal-background)
 ```bash
 npm install --save nodal-background
 ```
