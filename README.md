@@ -27,7 +27,6 @@ An abstract animated nodal background JavaScript canvas library.
 
 # Usage
 ## Installation
-Release pending
 ```bash
 npm install --save nodal-background
 ```
