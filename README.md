@@ -1,6 +1,6 @@
 # Nodal Background
 
-[[/static/img/repo_background.jpg|Nodal Background]]
+![Nodal Background](/static/img/repo_background_short.jpg)
 
 work in progress
 
