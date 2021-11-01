@@ -101,13 +101,10 @@ export class NodalBackground {
   protected _nodesToMerge: Array<Array<AbstractNode>> = []
   protected _adjustedNumberOfNodes: number
 
-  drop_distance: number
-
-  factors: Array<Array<number | boolean>> = []
+  protected _dropDistance: number
+  protected _factors: Array<Array<number | boolean>> = []
 
   constructor(props?: NodalBackgroundProps) {
-    console.log(props)
-
     this.props = { ...defaultNodalBackgroundProps }
 
     this.props.container = props.container
@@ -169,7 +166,7 @@ export class NodalBackground {
       ? props.fpsCounter
       : this.props.fpsCounter
 
-    this.drop_distance = 0
+    this._dropDistance = 0
     this._mouseHandler = new MouseHandler(this.canvas, this.addNode.bind(this))
 
     this._tPrevious = Date.now()
@@ -307,10 +304,8 @@ export class NodalBackground {
       return
     }
     // The rest of this method will execute in the next animation frame.
-
     window.removeEventListener("resize", this._resizeListener)
     this.canvas.remove()
-    console.log("TODO: FINISH CLEANUP!")
   }
 
   protected resize() {
@@ -387,13 +382,13 @@ export class NodalBackground {
 
     while (this._nodesToAdd.length) {
       this._nodes.push(this._nodesToAdd.pop())
-      this.factors.push([])
+      this._factors.push([])
     }
 
     for (let i = 0; i < this._nodes.length; i++) {
       for (let j = i + 1; j < this._nodes.length; j++) {
         // simulation step for both nodes
-        this.factors[i][j] = this._ticker.tickBoth(
+        this._factors[i][j] = this._ticker.tickBoth(
           time,
           this._nodes[i],
           this._nodes[j]
@@ -413,7 +408,7 @@ export class NodalBackground {
 
     for (let i = 0; i < this._nodes.length; i++) {
       for (let j = i + 1; j < this._nodes.length; j++) {
-        let factor = this.factors[i][j]
+        let factor = this._factors[i][j]
 
         if (factor === true || factor === false) {
           this._nodesToMerge.push([this._nodes[i], this._nodes[j]])
@@ -443,10 +438,10 @@ export class NodalBackground {
       nodeA.render()
 
       if (
-        nodeA.position.x < -this.drop_distance ||
-        nodeA.position.y < -this.drop_distance ||
-        nodeA.position.x > this.canvas.width + this.drop_distance ||
-        nodeA.position.y > this.canvas.height + this.drop_distance
+        nodeA.position.x < -this._dropDistance ||
+        nodeA.position.y < -this._dropDistance ||
+        nodeA.position.x > this.canvas.width + this._dropDistance ||
+        nodeA.position.y > this.canvas.height + this._dropDistance
       ) {
         if (nodeA.age < 0) {
           if (!this.props.preserveNumberOfNodes) {
