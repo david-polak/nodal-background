@@ -5,7 +5,10 @@ import {
   AbstractTicker,
   InstantiableAbstractTicker,
 } from "./tickers/AbstractTicker"
-import { AbstractLinker } from "./linkers/AbstractLinker"
+import {
+  AbstractLinker,
+  InstantiableAbstractLinker,
+} from "./linkers/AbstractLinker"
 import { StandardLinker } from "./linkers/StandardLinker"
 import Vector2 from "./Vector2"
 import { MouseHandler } from "./MouseHandler"
@@ -27,11 +30,14 @@ export interface NodalBackgroundProps {
   preserveNumberOfNodes: boolean
 
   linkColor?: string
+  linkDash: Array<number>
   nodeColor?: string
 
   fps?: number
   fpsCounter?: boolean
+
   ticker?: typeof AbstractTicker
+  linker?: typeof AbstractLinker
 }
 
 export const defaultNodalBackgroundProps: NodalBackgroundProps = {
@@ -42,11 +48,13 @@ export const defaultNodalBackgroundProps: NodalBackgroundProps = {
   preserveNumberOfNodes: true,
 
   linkColor: "#000000",
+  linkDash: [],
   nodeColor: "#000000",
 
   fps: 30,
   fpsCounter: false,
   ticker: null,
+  linker: null,
 }
 
 export class NodalBackground {
@@ -59,6 +67,7 @@ export class NodalBackground {
   protected _alive: boolean
 
   protected _ticker: AbstractTicker
+  protected _linker: AbstractLinker
   protected _fpsCounter: FPSCounter
 
   protected _tFps: number
@@ -75,8 +84,6 @@ export class NodalBackground {
 
   direction: boolean
 
-  linker: AbstractLinker
-
   max_velocity: number
   drop_distance: number
 
@@ -88,10 +95,11 @@ export class NodalBackground {
     console.log(props)
 
     this.props = { ...defaultNodalBackgroundProps }
-    this.props.container = props.container
 
+    this.props.container = props.container
     this.canvas = document.createElement("canvas")
     this.props.container.appendChild(this.canvas)
+
     this._context = this.canvas.getContext("2d")
 
     this._resizeListener = this.resize.bind(this)
@@ -103,8 +111,9 @@ export class NodalBackground {
     this.mode = props.mode ? props.mode : this.props.mode
     this.ticker = props.ticker ? props.ticker : this.props.ticker
 
-    this.linker = new StandardLinker(this._context)
+    this.linker = props.linker ? props.linker : this.props.linker
     this.linkColor = props.linkColor ? props.linkColor : this.props.linkColor
+    this.linkDash = props.linkDash ? props.linkDash : this.props.linkDash
 
     this.numberOfNodes = props.numberOfNodes
       ? props.numberOfNodes
@@ -131,7 +140,7 @@ export class NodalBackground {
 
   set linkColor(linkColor: string) {
     this.props.linkColor = linkColor
-    this.linker.linkColor = linkColor
+    this._linker.linkColor = linkColor
   }
 
   set nodeColor(nodeColor: string) {
@@ -146,6 +155,21 @@ export class NodalBackground {
     this.props.ticker = ticker
     const instantiable = ticker as InstantiableAbstractTicker<AbstractTicker>
     this._ticker = new instantiable(150)
+  }
+
+  set linker(linker: typeof AbstractLinker) {
+    if (!linker) {
+      this._linker = new StandardLinker(this._context)
+      return
+    }
+    this.props.linker = linker
+    const instantiable = linker as InstantiableAbstractLinker<AbstractLinker>
+    this._linker = new instantiable(this._context)
+  }
+
+  set linkDash(linkDash: Array<number>) {
+    this.props.linkDash = linkDash
+    this._linker.linkDash = linkDash
   }
 
   set mode(mode: NodalBackgroundMode) {
@@ -304,7 +328,7 @@ export class NodalBackground {
         }
 
         if (factor > 0.01) {
-          this.linker.renderLink(factor, this._nodes[i], this._nodes[j])
+          this._linker.renderLink(factor, this._nodes[i], this._nodes[j])
         }
       }
     }

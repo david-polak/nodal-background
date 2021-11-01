@@ -9,6 +9,7 @@ export const DefaultArguments: any = {
   preserveNumberOfNodes: true,
   fps: 30,
   fpsCounter: false,
+  linkDash: [],
 }
 
 export const ArgumentTypes: ArgTypes = {
@@ -98,6 +99,18 @@ export const ArgumentTypes: ArgTypes = {
     table: {
       type: { summary: "boolean" },
       defaultValue: { summary: false },
+    },
+  },
+
+  linkDash: {
+    description: "Segments of links, try [20,10] or [12,3,3]",
+    control: {
+      type: "object",
+      raw: true,
+    },
+    table: {
+      type: { summary: "setLineDash(segments: Array<number>)" },
+      defaultValue: { summary: "[]" },
     },
   },
 }

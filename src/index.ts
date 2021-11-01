@@ -2,8 +2,6 @@ import { useEffect, useState } from "react"
 import { NodalBackground, NodalBackgroundProps } from "./NodalBackground"
 
 export function useNodalBackground(props: NodalBackgroundProps) {
-  // console.log(props)
-
   const {
     fps,
     fpsCounter,
@@ -11,7 +9,10 @@ export function useNodalBackground(props: NodalBackgroundProps) {
     numberOfNodes,
     preserveNumberOfNodes,
     linkColor,
+    linkDash,
     nodeColor,
+    ticker,
+    linker,
   } = props
 
   const [container, setContainer] = useState(props.container)
@@ -33,6 +34,12 @@ export function useNodalBackground(props: NodalBackgroundProps) {
       nodalBackground.linkColor = linkColor
     }
   }, [linkColor])
+
+  useEffect(() => {
+    if (linkDash && nodalBackground) {
+      nodalBackground.linkDash = linkDash
+    }
+  }, [linkDash])
 
   useEffect(() => {
     if (mode && nodalBackground) {
@@ -69,6 +76,18 @@ export function useNodalBackground(props: NodalBackgroundProps) {
       nodalBackground.fpsCounter = fpsCounter
     }
   }, [fpsCounter])
+
+  useEffect(() => {
+    if (ticker != null && nodalBackground) {
+      nodalBackground.ticker = ticker
+    }
+  }, [ticker])
+
+  useEffect(() => {
+    if (linker != null && nodalBackground) {
+      nodalBackground.linker = linker
+    }
+  }, [linker])
 
   return {
     setContainer,
