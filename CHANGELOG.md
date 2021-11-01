@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/david-polak/nodal-background/compare/v0.0.8...v0.0.9) (2021-11-01)
+
+
+### Features
+
+* add readme to storybook ([6548529](https://github.com/david-polak/nodal-background/commit/65485293c35f829ae1ece2f9c1820c368edc31b3))
+* add repository background image ([334f80e](https://github.com/david-polak/nodal-background/commit/334f80edcdef5ada7cf0704dd025c825235438cf))
+* update README ([1e988d5](https://github.com/david-polak/nodal-background/commit/1e988d5f1b56ff195d31b239bf21628d7ecfb4e0))
+
+
+### Technical debt
+
+* move imports around ([b87584a](https://github.com/david-polak/nodal-background/commit/b87584a7fd9e7857f927504c666eb8bbcb2ee5c2))
+* move main files around ([25f9e54](https://github.com/david-polak/nodal-background/commit/25f9e54493ea1f36fd797a52418c4891c4c7e133))
+
+
+### Minor changes
+
+* add configuration documentation to README ([03b81c5](https://github.com/david-polak/nodal-background/commit/03b81c5d1067830e495c7d6a493362dc26d455f2))
+* add props to readme ([03887a8](https://github.com/david-polak/nodal-background/commit/03887a8f16a002cf2e26bc36a1b046df79e5cc2f))
+* add react usage to README ([4d21af4](https://github.com/david-polak/nodal-background/commit/4d21af4b6b061290c73e9f533107074551d63b8d))
+* add README blurb ([c4af881](https://github.com/david-polak/nodal-background/commit/c4af8810e646b1938d99442a45c39f5109196a97))
+* clean up debug statements ([1c6b215](https://github.com/david-polak/nodal-background/commit/1c6b2153e107e29cd6962069027b0de14e797c4b))
+* move blurbs around ([8d5fac3](https://github.com/david-polak/nodal-background/commit/8d5fac32bbe432f077fd3b7804b5d3f60c4b63fe))
+
 ### [0.0.8](https://github.com/david-polak/nodal-background/compare/v0.0.7...v0.0.8) (2021-11-01)
 
 
