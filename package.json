@@ -1,6 +1,6 @@
 {
   "name": "nodal-background",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Abstract animated nodal background JavaScript canvas library",
   "main": "index.js",
   "scripts": {

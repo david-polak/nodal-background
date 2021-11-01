@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/david-polak/nodal-background/compare/v1.0.0...v1.0.1) (2021-11-01)
+
+
+### Minor changes
+
+* add the GravityChill preset ([6d987ee](https://github.com/david-polak/nodal-background/commit/6d987ee914de63e4dddd6e6acbcf3ce1a3dc446a))
+* language pass on README ([66ebbb4](https://github.com/david-polak/nodal-background/commit/66ebbb4222d11bc8568a7f15a6ab4108a7049600))
+
 ## [1.0.0](https://github.com/david-polak/nodal-background/compare/v0.1.1...v1.0.0) (2021-11-01)
 
 
