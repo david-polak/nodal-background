@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/david-polak/nodal-background/compare/v1.2.1...v1.2.2) (2021-11-01)
+
+
+### Minor changes
+
+* make introduction the first page ([2398a51](https://github.com/david-polak/nodal-background/commit/2398a510cd8f08a8de19840472d55cdb368870e3))
+
 ### [1.2.1](https://github.com/david-polak/nodal-background/compare/v1.2.0...v1.2.1) (2021-11-01)
 
 
