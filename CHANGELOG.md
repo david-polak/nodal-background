@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/david-polak/nodal-background/compare/v0.0.9...v0.0.10) (2021-11-01)
+
+
+### Features
+
+* add publish script ([6e34624](https://github.com/david-polak/nodal-background/commit/6e346240062e0147455f9d8978c353104fb46f25))
+
+
+### Minor changes
+
+* fix typo ([f9e4e49](https://github.com/david-polak/nodal-background/commit/f9e4e499c8a8d05f3c8378e84f1676430355a49a))
+
 ### [0.0.9](https://github.com/david-polak/nodal-background/compare/v0.0.8...v0.0.9) (2021-11-01)
 
 
