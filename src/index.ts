@@ -6,6 +6,7 @@ export function useNodalBackground(props: NodalBackgroundProps) {
 
   const {
     fps,
+    fpsCounter,
     mode,
     numberOfNodes,
     preserveNumberOfNodes,
@@ -52,7 +53,7 @@ export function useNodalBackground(props: NodalBackgroundProps) {
   }, [numberOfNodes])
 
   useEffect(() => {
-    if (preserveNumberOfNodes && nodalBackground) {
+    if (preserveNumberOfNodes != null && nodalBackground) {
       nodalBackground.preserveNumberOfNodes = preserveNumberOfNodes
     }
   }, [preserveNumberOfNodes])
@@ -62,6 +63,12 @@ export function useNodalBackground(props: NodalBackgroundProps) {
       nodalBackground.fps = fps
     }
   }, [fps])
+
+  useEffect(() => {
+    if (fpsCounter != null && nodalBackground) {
+      nodalBackground.fpsCounter = fpsCounter
+    }
+  }, [fpsCounter])
 
   return {
     setContainer,

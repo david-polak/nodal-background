@@ -7,6 +7,7 @@ export const DefaultArguments: any = {
   nodeColor: "#222222",
   numberOfNodes: 100,
   fps: 30,
+  fpsCounter: false,
 }
 
 export const ArgumentTypes: ArgTypes = {
@@ -74,6 +75,17 @@ export const ArgumentTypes: ArgTypes = {
     table: {
       type: { summary: "hex color" },
       defaultValue: { summary: "#000000" },
+    },
+  },
+
+  fpsCounter: {
+    description: "Displays a fps counter. (expensive)",
+    control: {
+      type: "boolean",
+    },
+    table: {
+      type: { summary: "boolean" },
+      defaultValue: { summary: false },
     },
   },
 }

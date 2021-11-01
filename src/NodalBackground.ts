@@ -30,6 +30,7 @@ export interface NodalBackgroundProps {
   nodeColor?: string
 
   fps?: number
+  fpsCounter?: boolean
   ticker?: typeof AbstractTicker
 }
 
@@ -44,20 +45,24 @@ export const defaultNodalBackgroundProps: NodalBackgroundProps = {
   nodeColor: "#000000",
 
   fps: 30,
+  fpsCounter: false,
   ticker: null,
 }
 
 export class NodalBackground {
-  props: NodalBackgroundProps
+  public props: NodalBackgroundProps
 
-  protected canvas: HTMLCanvasElement
+  public canvas: HTMLCanvasElement
+  protected _context: CanvasRenderingContext2D
 
   protected _resizeListener: any
   protected _alive: boolean
 
   protected _ticker: AbstractTicker
+  protected _fpsCounter: FPSCounter
 
   protected _tFps: number
+  protected _tPrevious: number
 
   protected _nodes: Array<AbstractNode> = []
   protected _nodesToAdd: Array<AbstractNode> = []
@@ -67,12 +72,8 @@ export class NodalBackground {
 
   width: number
   height: number
-  context: CanvasRenderingContext2D
 
-  counter: number
   direction: boolean
-
-  tPrevious: number
 
   linker: AbstractLinker
 
@@ -83,8 +84,6 @@ export class NodalBackground {
 
   factors: Array<Array<number | boolean>> = []
 
-  fpsCounter: FPSCounter
-
   constructor(props?: NodalBackgroundProps) {
     console.log(props)
 
@@ -93,7 +92,7 @@ export class NodalBackground {
 
     this.canvas = document.createElement("canvas")
     this.props.container.appendChild(this.canvas)
-    this.context = this.canvas.getContext("2d")
+    this._context = this.canvas.getContext("2d")
 
     this._resizeListener = this.resize.bind(this)
     window.addEventListener("resize", this._resizeListener)
@@ -104,7 +103,7 @@ export class NodalBackground {
     this.mode = props.mode ? props.mode : this.props.mode
     this.ticker = props.ticker ? props.ticker : this.props.ticker
 
-    this.linker = new StandardLinker(this.context)
+    this.linker = new StandardLinker(this._context)
     this.linkColor = props.linkColor ? props.linkColor : this.props.linkColor
 
     this.numberOfNodes = props.numberOfNodes
@@ -112,16 +111,17 @@ export class NodalBackground {
       : this.props.numberOfNodes
 
     this.fps = props.fps ? props.fps : this.props.fps
+    this.fpsCounter = props.fpsCounter
+      ? props.fpsCounter
+      : this.props.fpsCounter
 
-    this.counter = 0
     this.direction = true
 
     this.max_velocity = 20
     this.drop_distance = 0
     this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
-    this.fpsCounter = new FPSCounter(this.context, false)
 
-    this.tPrevious = Date.now()
+    this._tPrevious = Date.now()
     this._alive = true
     requestAnimationFrame(this.handleAnimationFrame.bind(this))
   }
@@ -179,6 +179,11 @@ export class NodalBackground {
     this._tFps = (1 / fps) * 1000
   }
 
+  set fpsCounter(fpsCounter: boolean) {
+    this.props.fpsCounter = fpsCounter
+    this._fpsCounter = new FPSCounter(this._context, fpsCounter)
+  }
+
   destroy() {
     if (!this._alive) {
       this._alive = false
@@ -209,11 +214,11 @@ export class NodalBackground {
     }
 
     const now = Date.now()
-    const tDelta = now - this.tPrevious
+    const tDelta = now - this._tPrevious
 
     if (tDelta > this._tFps) {
       this.tick(tDelta)
-      this.tPrevious = now - (tDelta % this._tFps)
+      this._tPrevious = now - (tDelta % this._tFps)
     }
 
     requestAnimationFrame(this.handleAnimationFrame.bind(this))
@@ -246,9 +251,9 @@ export class NodalBackground {
      * operations per tick.
      */
 
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    this._context.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
-    this.fpsCounter.draw(time)
+    this._fpsCounter.draw(time)
 
     while (this._nodesToRemove.length) {
       const node = this._nodesToRemove.pop()
