@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/david-polak/nodal-background/compare/v0.1.1...v1.0.0) (2021-11-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* Release 1.0.0
+
+### Features
+
+* Release 1.0.0 ([06040fa](https://github.com/david-polak/nodal-background/commit/06040fa91788ffd68b9987285017c1f8580b332c))
+
 ### [0.1.1](https://github.com/david-polak/nodal-background/compare/v0.1.0...v0.1.1) (2021-11-01)
 
 
