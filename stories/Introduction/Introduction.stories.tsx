@@ -5,6 +5,8 @@ import { Meta } from "@storybook/react"
 import { NodalBackgroundWrapper } from "../NodalBackgroundWrapper"
 import { NodalBackgroundProps } from "../../src/main/NodalBackground"
 
+import ReactMarkdown from "react-markdown"
+
 import "../common.css"
 import "./Introduction.css"
 import { ArgumentTypes, DefaultArguments } from "../ArgumentTypes"
@@ -41,26 +43,12 @@ export default {
 } as Meta
 
 export function Introduction(props: NodalBackgroundProps) {
+  const readme = require("../../README.md")
   return (
     <>
       <NodalBackgroundWrapper {...props} />
       <div id="content">
-        <h1>Nodal Background</h1>
-        <p>
-          Nodal background is a fully configurable abstract background nodal
-          element for web pages.
-        </p>
-
-        <h2>Features</h2>
-        <ul>
-          <li>Interactive</li>
-          <ul>
-            <li>Try clicking! And click scrolling!</li>
-          </ul>
-          <li>Fully configurable</li>
-          <li>Various modes of operation</li>
-          <li>React bindings</li>
-        </ul>
+        <ReactMarkdown>{readme.default}</ReactMarkdown>
       </div>
     </>
   )
