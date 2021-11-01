@@ -21,12 +21,12 @@ export class BasicTicker extends AbstractTicker {
       return (nodeA.age < 1 ? nodeA.age : 1) * (nodeB.age < 1 ? nodeB.age : 1)
     }
 
-    if (distance > this.maxDistance) {
+    if (distance > this._maxDistance) {
       return 0
     }
 
     return (
-      ((distance - this.maxDistance) / (0 - this.maxDistance)) *
+      ((distance - this._maxDistance) / (0 - this._maxDistance)) *
       (nodeA.age < 1 ? nodeA.age : 1) *
       (nodeB.age < 1 ? nodeB.age : 1)
     )

@@ -18,6 +18,10 @@ export function useNodalBackground(props: NodalBackgroundProps) {
     nodeVisualSize,
     ticker,
     linker,
+    simMaxDistance,
+    simMassFactor,
+    simMinDistance,
+    simAttraction,
   } = props
 
   const [container, setContainer] = useState(props.container)
@@ -35,31 +39,31 @@ export function useNodalBackground(props: NodalBackgroundProps) {
   }, [container])
 
   useEffect(() => {
-    if (linkColor && nodalBackground) {
+    if (linkColor != null && nodalBackground) {
       nodalBackground.linkColor = linkColor
     }
   }, [linkColor])
 
   useEffect(() => {
-    if (linkDash && nodalBackground) {
+    if (linkDash != null && nodalBackground) {
       nodalBackground.linkDash = linkDash
     }
   }, [linkDash])
 
   useEffect(() => {
-    if (mode && nodalBackground) {
+    if (mode != null && nodalBackground) {
       nodalBackground.mode = mode
     }
   }, [mode])
 
   useEffect(() => {
-    if (nodeColor && nodalBackground) {
+    if (nodeColor != null && nodalBackground) {
       nodalBackground.nodeColor = nodeColor
     }
   }, [nodeColor])
 
   useEffect(() => {
-    if (numberOfNodes && nodalBackground) {
+    if (numberOfNodes != null && nodalBackground) {
       nodalBackground.numberOfNodes = numberOfNodes
     }
   }, [numberOfNodes])
@@ -71,7 +75,7 @@ export function useNodalBackground(props: NodalBackgroundProps) {
   }, [preserveNumberOfNodes])
 
   useEffect(() => {
-    if (fps && nodalBackground) {
+    if (fps != null && nodalBackground) {
       nodalBackground.fps = fps
     }
   }, [fps])
@@ -95,34 +99,58 @@ export function useNodalBackground(props: NodalBackgroundProps) {
   }, [linker])
 
   useEffect(() => {
-    if (nodeMaxInitialVelocity && nodalBackground) {
+    if (nodeMaxInitialVelocity != null && nodalBackground) {
       nodalBackground.nodeMaxInitialVelocity = nodeMaxInitialVelocity
     }
   }, [nodeMaxInitialVelocity])
 
   useEffect(() => {
-    if (nodeInitialMass && nodalBackground) {
+    if (nodeInitialMass != null && nodalBackground) {
       nodalBackground.nodeInitialMass = nodeInitialMass
     }
   }, [nodeInitialMass])
 
   useEffect(() => {
-    if (nodeAgeFactor && nodalBackground) {
+    if (nodeAgeFactor != null && nodalBackground) {
       nodalBackground.nodeAgeFactor = nodeAgeFactor
     }
   }, [nodeAgeFactor])
 
   useEffect(() => {
-    if (nodeDeAgeFactor && nodalBackground) {
+    if (nodeDeAgeFactor != null && nodalBackground) {
       nodalBackground.nodeDeAgeFactor = nodeDeAgeFactor
     }
   }, [nodeDeAgeFactor])
 
   useEffect(() => {
-    if (nodeVisualSize && nodalBackground) {
+    if (nodeVisualSize != null && nodalBackground) {
       nodalBackground.nodeVisualSize = nodeVisualSize
     }
   }, [nodeVisualSize])
+
+  useEffect(() => {
+    if (simMaxDistance != null && nodalBackground) {
+      nodalBackground.simMaxDistance = simMaxDistance
+    }
+  }, [simMaxDistance])
+
+  useEffect(() => {
+    if (simMassFactor != null && nodalBackground) {
+      nodalBackground.simMassFactor = simMassFactor
+    }
+  }, [simMassFactor])
+
+  useEffect(() => {
+    if (simMinDistance != null && nodalBackground) {
+      nodalBackground.simMinDistance = simMinDistance
+    }
+  }, [simMinDistance])
+
+  useEffect(() => {
+    if (simAttraction != null && nodalBackground) {
+      nodalBackground.simAttraction = simAttraction
+    }
+  }, [simAttraction])
 
   return {
     setContainer,

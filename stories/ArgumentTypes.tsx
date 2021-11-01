@@ -15,6 +15,10 @@ export const DefaultArguments: any = {
   nodeAgeFactor: 0.5,
   nodeDeAgeFactor: 2,
   nodeVisualSize: 0.5,
+  simMaxDistance: 150,
+  simMinDistance: 3,
+  simMassFactor: 1,
+  simAttraction: 10,
 }
 
 export const ArgumentTypes: ArgTypes = {
@@ -186,6 +190,64 @@ export const ArgumentTypes: ArgTypes = {
     table: {
       type: { summary: "boolean" },
       defaultValue: { summary: false },
+    },
+  },
+
+  simMaxDistance: {
+    description:
+      "Maximum simulation distance between nodes. Affects overall visuals and performance.",
+    control: {
+      type: "range",
+      min: 1,
+      max: 5000,
+      step: 1,
+    },
+    table: {
+      type: { summary: "number" },
+      defaultValue: { summary: 150 },
+    },
+  },
+
+  simMinDistance: {
+    description:
+      "Minimum simulation distance between nodes. Low values produce significant slingshot speeds.",
+    control: {
+      type: "range",
+      min: 0,
+      max: 100,
+      step: 0.01,
+    },
+    table: {
+      type: { summary: "number" },
+      defaultValue: { summary: 1 },
+    },
+  },
+
+  simMassFactor: {
+    description: "Mass factor multiplier",
+    control: {
+      type: "range",
+      min: 0,
+      max: 100,
+      step: 0.01,
+    },
+    table: {
+      type: { summary: "number" },
+      defaultValue: { summary: 1 },
+    },
+  },
+
+  simAttraction: {
+    description: "Strength of the force applied between nodes.",
+    control: {
+      type: "range",
+      min: 0,
+      max: 100,
+      step: 0.01,
+    },
+    table: {
+      type: { summary: "number" },
+      defaultValue: { summary: 10 },
     },
   },
 }

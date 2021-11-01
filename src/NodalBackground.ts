@@ -42,6 +42,11 @@ export interface NodalBackgroundProps {
   fps?: number
   fpsCounter?: boolean
 
+  simMaxDistance?: number
+  simMinDistance?: number
+  simMassFactor?: number
+  simAttraction?: number
+
   ticker?: typeof AbstractTicker
   linker?: typeof AbstractLinker
 }
@@ -67,6 +72,11 @@ export const defaultNodalBackgroundProps: NodalBackgroundProps = {
   fpsCounter: false,
   ticker: null,
   linker: null,
+
+  simMaxDistance: 150,
+  simMinDistance: 3,
+  simMassFactor: 1,
+  simAttraction: 10,
 }
 
 export class NodalBackground {
@@ -131,6 +141,18 @@ export class NodalBackground {
 
     this.mode = props.mode ? props.mode : this.props.mode
     this.ticker = props.ticker ? props.ticker : this.props.ticker
+    this.simMaxDistance = props.simMaxDistance
+      ? props.simMaxDistance
+      : this.props.simMaxDistance
+    this.simMinDistance = props.simMinDistance
+      ? props.simMinDistance
+      : this.props.simMinDistance
+    this.simMassFactor = props.simMassFactor
+      ? props.simMassFactor
+      : this.props.simMassFactor
+    this.simAttraction = props.simAttraction
+      ? props.simAttraction
+      : this.props.simAttraction
 
     this.linker = props.linker ? props.linker : this.props.linker
     this.linkColor = props.linkColor ? props.linkColor : this.props.linkColor
@@ -195,7 +217,7 @@ export class NodalBackground {
     }
     this.props.ticker = ticker
     const instantiable = ticker as InstantiableAbstractTicker<AbstractTicker>
-    this._ticker = new instantiable(150)
+    this._ticker = new instantiable()
   }
 
   set linker(linker: typeof AbstractLinker) {
@@ -217,14 +239,33 @@ export class NodalBackground {
     this.props.mode = mode
 
     if (mode === NodalBackgroundMode.Gravity) {
-      this._ticker = new EulerTicker(150)
+      this._ticker = new EulerTicker()
     } else if (mode === NodalBackgroundMode.AntiGravity) {
-      this._ticker = new AntiEulerTicker(150)
+      this._ticker = new AntiEulerTicker()
     } else if (mode === NodalBackgroundMode.Simple) {
-      this._ticker = new BasicTicker(150)
+      this._ticker = new BasicTicker()
     } else {
-      this._ticker = new EulerTicker(150)
+      this._ticker = new EulerTicker()
     }
+  }
+
+  set simMaxDistance(simMaxDistance: number) {
+    this.props.simMaxDistance = simMaxDistance
+    this._ticker.maxDistance = simMaxDistance
+  }
+  set simMinDistance(simMinDistance: number) {
+    this.props.simMinDistance = simMinDistance
+    this._ticker.minDistance = simMinDistance
+  }
+
+  set simMassFactor(simMassFactor: number) {
+    this.props.simMassFactor = simMassFactor
+    this._ticker.massFactor = simMassFactor
+  }
+
+  set simAttraction(simAttraction: number) {
+    this.props.simAttraction = simAttraction
+    this._ticker.attraction = simAttraction
   }
 
   set numberOfNodes(numberOfNodes: number) {

@@ -21,9 +21,6 @@ export class AntiEulerTicker extends AbstractTicker {
     const distanceY = nodeA.position.y - nodeB.position.y
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
 
-    const attraction = 10
-    const massFactor = 1
-
     if (
       distance <
       Math.sqrt((nodeA.mass + nodeB.mass) / Math.PI) + nodeA._visualSize * 1.5
@@ -31,23 +28,23 @@ export class AntiEulerTicker extends AbstractTicker {
       return true
     }
 
-    if (distance < 1) {
+    if (distance < this._minDistance) {
       return (nodeA.age < 1 ? nodeA.age : 1) * (nodeB.age < 1 ? nodeB.age : 1)
     }
 
-    if (distance > this.maxDistance) {
+    if (distance > this._maxDistance) {
       return 0
     }
 
-    const scalar = Math.pow(distance, -3) * attraction * tDelta
+    const scalar = Math.pow(distance, -3) * this._attraction * tDelta
 
     const accelerationX = (nodeA.position.x - nodeB.position.x) * scalar
     const accelerationY = (nodeA.position.y - nodeB.position.y) * scalar
 
-    const forceAx = accelerationX * nodeB.mass * massFactor
-    const forceAy = accelerationY * nodeB.mass * massFactor
-    const forceBx = -(accelerationX * nodeA.mass * massFactor)
-    const forceBy = -(accelerationY * nodeA.mass * massFactor)
+    const forceAx = accelerationX * nodeB.mass * this._massFactor
+    const forceAy = accelerationY * nodeB.mass * this._massFactor
+    const forceBx = -(accelerationX * nodeA.mass * this._massFactor)
+    const forceBy = -(accelerationY * nodeA.mass * this._massFactor)
 
     nodeA.velocity.x += forceAx
     nodeA.velocity.y += forceAy
@@ -55,7 +52,7 @@ export class AntiEulerTicker extends AbstractTicker {
     nodeB.velocity.y += forceBy
 
     return (
-      ((distance - this.maxDistance) / (0 - this.maxDistance)) *
+      ((distance - this._maxDistance) / (0 - this._maxDistance)) *
       (nodeA.age < 1 ? nodeA.age : 1) *
       (nodeB.age < 1 ? nodeB.age : 1)
     )
