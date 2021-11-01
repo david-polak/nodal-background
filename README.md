@@ -14,16 +14,15 @@ An abstract animated nodal background JavaScript canvas library.
     * `Simple` makes the simulation serene and non-distracting.
      
 * Fully configurable
- 
   * Everything that could have been has been exposed as a configuration 
     variable. Values can be changed that greatly affect the behaviour and 
     visuals of the simulation.
-   
-  * You can provide concrete implementations of abstract classes for 
+  * Concrete implementations of abstract classes can be created to achieve 
     custom behaviour.
    
 * Interactive
-  * You can add nodes and interact with the nodes flying around
+  * Nodes can be interacted with using the mouse
+  * Click scrolling changes the mass of the added node
 
 # Usage
 ## Installation
@@ -98,7 +97,7 @@ Controls the behaviour of the entire simulation.
 #### `simMaxDistance: number, default: 150`
 Maximum distance between two nodes for the interaction to be calculated.
 Higher numbers are more computationally expensive and create a more connected
-graph, whereas lower values produce less connection lines between nodes.
+graph, whereas lower values produce fewer connection lines between nodes.
 
 #### `simMinDistance: number, default: 3`
 Minimum distance between two nodes for the interaction to be calculated.
@@ -159,8 +158,8 @@ Displays the FPS counter, the current implementation of the fps counter has a
 negative impact on the actual fps, when bottlenecked it takes about 10fps.
 
 ## Overrides
-If you wish to write custom simulation behaviour you can use the base abstract
-classes and provide your own implementation.
+Custom simulation behaviour can be achieved by extending the base abstract 
+classes.
 
 For more information read the included implementing classes.
 
