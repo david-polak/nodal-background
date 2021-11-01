@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/david-polak/nodal-background/compare/v0.0.10...v0.1.0) (2021-11-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* prime the npm publish script
+
+### Features
+
+* prime the npm publish script ([74fb2e5](https://github.com/david-polak/nodal-background/commit/74fb2e5fa5d5656b974204d0cb0084bc852e65e2))
+
+
+### Minor changes
+
+* update logo in README ([65bd11f](https://github.com/david-polak/nodal-background/commit/65bd11f31493b4f35f5d2cfd7d247115a1e64575))
+
 ### [0.0.10](https://github.com/david-polak/nodal-background/compare/v0.0.9...v0.0.10) (2021-11-01)
 
 
