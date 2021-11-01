@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/david-polak/nodal-background/compare/v0.0.7...v0.0.8) (2021-11-01)
+
+
+### Minor changes
+
+* fix regression in ticker instantiation ([5fdc49e](https://github.com/david-polak/nodal-background/commit/5fdc49e6300a751f2ee5dac6d7b101c82872cc9c))
+
 ### [0.0.7](https://github.com/david-polak/nodal-background/compare/v0.0.6...v0.0.7) (2021-11-01)
 
 
