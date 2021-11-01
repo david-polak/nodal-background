@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/david-polak/nodal-background/compare/v1.0.1...v1.1.0) (2021-11-01)
+
+
+### Features
+
+* add nodeMaxMass control ([eab0352](https://github.com/david-polak/nodal-background/commit/eab035269207b86bf9ce08054e2620ee676d0516))
+
+
+### Technical debt
+
+* change the dark preset ([5093e63](https://github.com/david-polak/nodal-background/commit/5093e63208f411646690b381fb6c25091bcb0323))
+* rename GravityChill files ([2477ad3](https://github.com/david-polak/nodal-background/commit/2477ad3396c691fff8463f92a78e1ebcee81ede2))
+
+
+### Minor changes
+
+* add AntiGravity Chill ([8119904](https://github.com/david-polak/nodal-background/commit/81199045ca5f153e1a4ebd78b075dfd91d684e1e))
+* add Gravity Spaz ([b32f3a7](https://github.com/david-polak/nodal-background/commit/b32f3a7cd5d447d78a4346e1121a7cf0d7a15799))
+* add keywords to package.json ([eb8cadd](https://github.com/david-polak/nodal-background/commit/eb8cadd06c20d6d34d9716881afc466399a0467c))
+* add SimpleDash ([df73f5f](https://github.com/david-polak/nodal-background/commit/df73f5f50cccec780964c55da1a36b3315eedb28))
+* fix mode in Dark theme ([d078961](https://github.com/david-polak/nodal-background/commit/d078961a54c22c9b3a27b4a3da47e6194e04dab7))
+* initial set of numberOfNodes ([c040394](https://github.com/david-polak/nodal-background/commit/c04039495a933f5c5e8122d45afd5722be2cf239))
+
 ### [1.0.1](https://github.com/david-polak/nodal-background/compare/v1.0.0...v1.0.1) (2021-11-01)
 
 
