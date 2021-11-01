@@ -2,14 +2,13 @@
   "name": "nodal-background",
   "version": "0.0.9",
   "description": "Abstract animated nodal background JavaScript canvas library",
-  "private": true,
   "main": "index.js",
   "scripts": {
     "build": "rm -rf dist/*; tsc",
     "storybook": "start-storybook -p 6006 --no-manager-cache",
     "build-storybook": "build-storybook --quiet -o docs/",
-    "prepare": "husky install",
-    "publish": "./scripts/publish.sh",
+    "prepare-disabled": "husky install",
+    "ci-publish": "./scripts/publish.sh",
     "standard-version": "standard-version --commit-all",
     "test": "jest"
   },
