@@ -22,6 +22,7 @@ export default {
   },
   args: {
     ...DefaultArguments,
+    mode: NodalBackgroundMode.Gravity,
     numberOfNodes: 130,
     nodeVisualSize: 1.5,
     nodeMaxMass: 30,
