@@ -10,7 +10,6 @@ import {
   InstantiableAbstractLinker,
 } from "../linkers/AbstractLinker"
 import { StandardLinker } from "../linkers/StandardLinker"
-import Vector2 from "../utils/Vector2"
 import { MouseHandler } from "./MouseHandler"
 import { EulerTicker } from "../tickers/EulerTicker"
 import { FPSCounter } from "./FPSCounter"
@@ -23,21 +22,21 @@ export enum NodalBackgroundMode {
 }
 
 export interface NodalBackgroundProps {
-  container: Element
+  container?: Element
 
   mode?: NodalBackgroundMode
   numberOfNodes?: number
-  preserveNumberOfNodes: boolean
+  preserveNumberOfNodes?: boolean
 
   linkColor?: string
-  linkDash: Array<number>
+  linkDash?: Array<number>
 
   nodeColor?: string
-  nodeMaxInitialVelocity: number
-  nodeInitialMass: number
-  nodeAgeFactor: number
-  nodeDeAgeFactor: number
-  nodeVisualSize: number
+  nodeMaxInitialVelocity?: number
+  nodeInitialMass?: number
+  nodeAgeFactor?: number
+  nodeDeAgeFactor?: number
+  nodeVisualSize?: number
 
   fps?: number
   fpsCounter?: boolean

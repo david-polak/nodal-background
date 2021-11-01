@@ -9,6 +9,7 @@
     "storybook": "start-storybook -p 6006 --no-manager-cache",
     "build-storybook": "build-storybook --quiet -o docs/",
     "prepare": "husky install",
+    "publish": "./scripts/publish.sh",
     "standard-version": "standard-version --commit-all",
     "test": "jest"
   },
