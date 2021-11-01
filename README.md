@@ -1,6 +1,5 @@
 # Nodal Background
 ![Nodal Background](https://raw.githubusercontent.com/david-polak/nodal-background/main/static/img/repo_background_short.jpg)
-
 An abstract animated nodal background JavaScript canvas library.
 
 * [Demonstration page](https://nodal-background.polakdavid.com)
@@ -25,7 +24,9 @@ An abstract animated nodal background JavaScript canvas library.
   * Click scrolling changes the mass of the added node
 
 # Usage
+
 ## Installation
+[![npm version](https://badge.fury.io/js/nodal-background.svg)](https://badge.fury.io/js/nodal-background)
 ```bash
 npm install --save nodal-background
 ```
