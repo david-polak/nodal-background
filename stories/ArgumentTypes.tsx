@@ -75,9 +75,9 @@ export const ArgumentTypes: ArgTypes = {
     description: "Initial velocity of nodes.",
     control: {
       type: "range",
-      min: 1,
+      min: 0,
       max: 300,
-      step: 1,
+      step: 0.01,
     },
     table: {
       type: { summary: "number" },
