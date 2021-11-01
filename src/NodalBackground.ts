@@ -91,9 +91,6 @@ export class NodalBackground {
   protected _nodesToMerge: Array<Array<AbstractNode>> = []
   protected _adjustedNumberOfNodes: number
 
-  width: number
-  height: number
-
   direction: boolean
 
   drop_distance: number
@@ -277,11 +274,8 @@ export class NodalBackground {
   }
 
   protected resize() {
-    this.width = this.props.container.clientWidth * devicePixelRatio
-    this.height = this.props.container.clientHeight * devicePixelRatio
-
-    this.canvas.width = this.width
-    this.canvas.height = this.height
+    this.canvas.width = this.props.container.clientWidth * devicePixelRatio
+    this.canvas.height = this.props.container.clientHeight * devicePixelRatio
 
     // recalculate the _adjustedNumberOfNodes
     this.numberOfNodes = this.props.numberOfNodes
