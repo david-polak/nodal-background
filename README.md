@@ -6,16 +6,16 @@ An abstract animated nodal background JavaScript canvas library.
 * [Demonstration page](https://nodal-background.polakdavid.com)
 
 ## Features
+* Different modes of operation
+    * `AntiGravity` produces a pleasing effect of nodes pulling away from each other.
+    * `Gravity` creates a true n-body simulation with emerging chaotic behaviour.
+    * `Simple` makes the simulation serene and non-distracting.
 * Fully configurable
   * Everything that could have been has been exposed as a configuration variable.
-    Values can be changed tht greatly affect the behaviour and visuals of the simulation.
+    Values can be changed that greatly affect the behaviour and visuals of the simulation.
   * You can provide concrete implementations of abstract classes for custom behaviour.
 * Interactive
   * You can add nodes and interact with the nodes flying around
-* Different modes of operation
-  * AntiGravity produces a pleasing effect of nodes pulling away from each other.
-  * Gravity creates a true n-body simulation with emerging chaotic behaviour.
-  * Simple makes the simulation serene and non-distracting.
 
 # Usage
 ## Installation
