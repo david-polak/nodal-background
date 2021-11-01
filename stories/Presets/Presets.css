@@ -1,0 +1,21 @@
+#presets-content {
+  width: 30vw;
+  margin: auto;
+  /*padding: 0 2rem 0 0 ;*/
+  padding: 0.5rem 2rem;
+  background-color: #ffffffea;
+  border-right: 1px solid #0000001a;
+  border-left: 1px solid #0000001a;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+  line-height: 2;
+
+  font-family: system-ui, /* macOS 10.11-10.12 */ -apple-system,
+    /* Windows 6+ */ "Segoe UI", /* Android 4+ */ "Roboto",
+    /* Ubuntu 10.10+ */ "Ubuntu", /* Gnome 3+ */ "Cantarell",
+    /* KDE Plasma 5+ */ "Noto Sans", /* fallback */ sans-serif,
+    /* macOS emoji */ "Apple Color Emoji", /* Windows emoji */ "Segoe UI Emoji",
+    /* Windows emoji */ "Segoe UI Symbol", /* Linux emoji */ "Noto Color Emoji";
+
+  position: relative;
+  z-index: 2;
+}
