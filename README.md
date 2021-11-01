@@ -26,7 +26,7 @@ An abstract animated nodal background JavaScript canvas library.
 # Usage
 
 ## Installation
-[![npm version](https://badge.fury.io/js/nodal-background.svg)](https://badge.fury.io/js/nodal-background)
+[![npm version](https://badge.fury.io/js/nodal-background.svg)](https://www.npmjs.com/package/nodal-background)
 ```bash
 npm install --save nodal-background
 ```
@@ -38,7 +38,7 @@ import { useNodalBackground } from "nodal-background"
 
 export const NodalBackgroundComponent = (props: NodalBackgroundProps) => {
   const container = useRef()
-  
+  j
   const {setContainer} = useNodalBackground({
     container: container.current,
     ...props
