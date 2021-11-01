@@ -31,8 +31,8 @@ export default {
 
 export const AntiGravityChill = (props: any) => {
   const description = `
-  ## Gravity Chill
-  Gravity mode with less movement and larger node sizes.
+  ## AntiGravity Chill
+  AntiGravity mode with less movement and larger node sizes.
   \`\`\`
   mode: NodalBackgroundMode.AntiGravity,
   numberOfNodes: 40,

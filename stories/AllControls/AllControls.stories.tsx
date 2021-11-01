@@ -19,4 +19,4 @@ export default {
   },
 }
 
-export const Everything = (props: any) => <NodalBackgroundWrapper {...props} />
+export const AllControls = (props: any) => <NodalBackgroundWrapper {...props} />

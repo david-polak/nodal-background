@@ -138,6 +138,13 @@ export class NodalBackground {
       ? props.nodeMaxMass
       : this.props.nodeMaxMass
 
+    this.numberOfNodes = props.numberOfNodes
+      ? props.numberOfNodes
+      : this.props.numberOfNodes
+    this.preserveNumberOfNodes = props.preserveNumberOfNodes
+      ? props.preserveNumberOfNodes
+      : this.preserveNumberOfNodes
+
     this.resize()
 
     this.mode = props.mode ? props.mode : this.props.mode
@@ -158,13 +165,6 @@ export class NodalBackground {
     this.linker = props.linker ? props.linker : this.props.linker
     this.linkColor = props.linkColor ? props.linkColor : this.props.linkColor
     this.linkDash = props.linkDash ? props.linkDash : this.props.linkDash
-
-    this.numberOfNodes = props.numberOfNodes
-      ? props.numberOfNodes
-      : this.props.numberOfNodes
-    this.preserveNumberOfNodes = props.preserveNumberOfNodes
-      ? props.preserveNumberOfNodes
-      : this.preserveNumberOfNodes
 
     this.fps = props.fps ? props.fps : this.props.fps
     this.fpsCounter = props.fpsCounter
