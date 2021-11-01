@@ -55,6 +55,17 @@ export const ArgumentTypes: ArgTypes = {
     },
   },
 
+  nodeColor: {
+    description: "Color of the nodes.",
+    control: {
+      type: "color",
+    },
+    table: {
+      type: { summary: "hex color" },
+      defaultValue: { summary: "#000000" },
+    },
+  },
+
   fps: {
     description: "Target fps",
     control: {
@@ -80,14 +91,15 @@ export const ArgumentTypes: ArgTypes = {
     },
   },
 
-  nodeColor: {
-    description: "Color of the nodes.",
+  linkDash: {
+    description: "Segments of links, try [20,10] or [12,3,3]",
     control: {
-      type: "color",
+      type: "object",
+      raw: true,
     },
     table: {
-      type: { summary: "hex color" },
-      defaultValue: { summary: "#000000" },
+      type: { summary: "setLineDash(segments: Array<number>)" },
+      defaultValue: { summary: "[]" },
     },
   },
 
@@ -99,18 +111,6 @@ export const ArgumentTypes: ArgTypes = {
     table: {
       type: { summary: "boolean" },
       defaultValue: { summary: false },
-    },
-  },
-
-  linkDash: {
-    description: "Segments of links, try [20,10] or [12,3,3]",
-    control: {
-      type: "object",
-      raw: true,
-    },
-    table: {
-      type: { summary: "setLineDash(segments: Array<number>)" },
-      defaultValue: { summary: "[]" },
     },
   },
 }
