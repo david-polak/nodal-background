@@ -7,7 +7,7 @@ export class StandardLinker extends AbstractLinker {
 
     this._context.strokeStyle = `rgba(${this._linkColor.red},${this._linkColor.green},${this._linkColor.blue},${factor})`
 
-    // this._context.setLineDash(this._linkDash)
+    this._context.setLineDash(this._linkDash)
     this._context.moveTo(nodeA.position.x, nodeA.position.y)
     this._context.lineTo(nodeB.position.x, nodeB.position.y)
 
