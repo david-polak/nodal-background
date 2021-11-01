@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/david-polak/nodal-background/compare/v1.1.0...v1.2.0) (2021-11-01)
+
+
+### Features
+
+* add nodeInitialMassRange ([fcc6b7b](https://github.com/david-polak/nodal-background/commit/fcc6b7b58a460bff52ec84532dc6960abf149d63))
+
+
+### Minor changes
+
+* add nodeMaxMass ([1505cfb](https://github.com/david-polak/nodal-background/commit/1505cfb3f66c662991c9ea92b9de633661680cc9))
+* add npm version badge ([9db62ed](https://github.com/david-polak/nodal-background/commit/9db62edc2af89f011617f5860101e05e28c12fe3))
+* update link for badge ([7ba0639](https://github.com/david-polak/nodal-background/commit/7ba0639e3f4eaebbaa89024ba427e7cad5ba89c6))
+
 ## [1.1.0](https://github.com/david-polak/nodal-background/compare/v1.0.1...v1.1.0) (2021-11-01)
 
 
