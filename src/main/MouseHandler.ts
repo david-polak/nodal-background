@@ -1,5 +1,5 @@
-import Vector2 from "./Vector2"
-import { AbstractNode } from "./nodes/AbstractNode"
+import Vector2 from "../utils/Vector2"
+import { AbstractNode } from "../nodes/AbstractNode"
 
 export class MouseHandler {
   canvas: HTMLCanvasElement

@@ -1,3 +1,3 @@
-export { NodalBackground } from "./NodalBackground"
-export { useNodalBackground } from "./useNodalBackground"
-export { NodalBackgroundComponent } from "./NodalBackgroundComponent"
+export { NodalBackground } from "./main/NodalBackground"
+export { useNodalBackground } from "./main/useNodalBackground"
+export { NodalBackgroundComponent } from "./main/NodalBackgroundComponent"

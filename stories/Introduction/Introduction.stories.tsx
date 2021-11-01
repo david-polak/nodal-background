@@ -3,7 +3,7 @@ import React from "react"
 
 import { Meta } from "@storybook/react"
 import { NodalBackgroundWrapper } from "../NodalBackgroundWrapper"
-import { NodalBackgroundProps } from "../../src/NodalBackground"
+import { NodalBackgroundProps } from "../../src/main/NodalBackground"
 
 import "../common.css"
 import "./Introduction.css"

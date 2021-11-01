@@ -1,5 +1,5 @@
 import { ArgTypes } from "@storybook/react"
-import { NodalBackgroundMode } from "../src/NodalBackground"
+import { NodalBackgroundMode } from "../src/main/NodalBackground"
 
 export const DefaultArguments: any = {
   mode: NodalBackgroundMode.AntiGravity,

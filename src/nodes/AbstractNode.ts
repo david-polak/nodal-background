@@ -1,4 +1,4 @@
-import Vector2 from "../Vector2"
+import Vector2 from "../utils/Vector2"
 import getRandomArbitrary from "../utils/getRandomArbitrary"
 import hexRgb, { RgbaObject } from "hex-rgb"
 

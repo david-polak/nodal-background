@@ -1,20 +1,20 @@
-import { BasicNode } from "./nodes/BasicNode"
-import { AbstractNode } from "./nodes/AbstractNode"
-import { BasicTicker } from "./tickers/BasicTicker"
+import { BasicNode } from "../nodes/BasicNode"
+import { AbstractNode } from "../nodes/AbstractNode"
+import { BasicTicker } from "../tickers/BasicTicker"
 import {
   AbstractTicker,
   InstantiableAbstractTicker,
-} from "./tickers/AbstractTicker"
+} from "../tickers/AbstractTicker"
 import {
   AbstractLinker,
   InstantiableAbstractLinker,
-} from "./linkers/AbstractLinker"
-import { StandardLinker } from "./linkers/StandardLinker"
-import Vector2 from "./Vector2"
+} from "../linkers/AbstractLinker"
+import { StandardLinker } from "../linkers/StandardLinker"
+import Vector2 from "../utils/Vector2"
 import { MouseHandler } from "./MouseHandler"
-import { EulerTicker } from "./tickers/EulerTicker"
+import { EulerTicker } from "../tickers/EulerTicker"
 import { FPSCounter } from "./FPSCounter"
-import { AntiEulerTicker } from "./tickers/AntiEulerTicker"
+import { AntiEulerTicker } from "../tickers/AntiEulerTicker"
 
 export enum NodalBackgroundMode {
   Gravity = "Gravity",

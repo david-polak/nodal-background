@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "build": "rm dist/*; tsc",
+    "build": "rm -rf dist/*; tsc",
     "storybook": "start-storybook -p 6006 --no-manager-cache",
     "build-storybook": "build-storybook --quiet -o docs/",
     "prepare": "husky install",
