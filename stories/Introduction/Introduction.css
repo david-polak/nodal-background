@@ -18,3 +18,7 @@
   position: relative;
   z-index: 2;
 }
+
+#content img {
+  width: 100%;
+}
