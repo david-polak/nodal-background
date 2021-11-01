@@ -1,5 +1,5 @@
 # Nodal Background
-![Nodal Background](/static/img/repo_background_short.jpg)
+![Nodal Background](https://raw.githubusercontent.com/david-polak/nodal-background/main/static/img/repo_background_short.jpg)
 
 An abstract animated nodal background JavaScript canvas library.
 
