@@ -1,3 +1,7 @@
+# Nodal Background
+
+[[/static/img/repo_background.jpg|Nodal Background]]
+
 work in progress
 
 # Component demo and usage
