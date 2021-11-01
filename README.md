@@ -132,6 +132,9 @@ chaos.
 #### `nodeInitialMass: number, default: 1.5`
 Initial mass of the nodes.
 
+#### `nodeInitialMassRange: number, default: 0`
+When greater than 0, initial mass of nodes will be randomized up to the value.
+
 #### `nodeMaxMass: number, default: 0`
 Maximum mass of the nodes, applied when merging. Value `0` sets no maximum mass.
 

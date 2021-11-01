@@ -28,7 +28,7 @@ export default {
     nodeColor: "#835600",
     backgroundColor: "#decfac",
     numberOfNodes: 120,
-    nodeInitialMass: 3.7,
+    nodeInitialMassRange: 10,
     simMaxDistance: 180,
   },
   parameters: {
@@ -49,7 +49,7 @@ export const SimpleDash = (props: any) => {
     nodeColor: "#835600",
     backgroundColor: "#decfac",
     numberOfNodes: 120,
-    nodeInitialMass: 3.7,
+    nodeInitialMassRange: 10,
     simMaxDistance: 180
   \`\`\`
   `

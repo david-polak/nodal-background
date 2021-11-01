@@ -13,6 +13,7 @@ export function useNodalBackground(props: NodalBackgroundProps) {
     nodeColor,
     nodeMaxInitialVelocity,
     nodeInitialMass,
+    nodeInitialMassRange,
     nodeAgeFactor,
     nodeDeAgeFactor,
     nodeVisualSize,
@@ -110,6 +111,12 @@ export function useNodalBackground(props: NodalBackgroundProps) {
       nodalBackground.nodeInitialMass = nodeInitialMass
     }
   }, [nodeInitialMass])
+
+  useEffect(() => {
+    if (nodeInitialMassRange != null && nodalBackground) {
+      nodalBackground.nodeInitialMassRange = nodeInitialMassRange
+    }
+  }, [nodeInitialMassRange])
 
   useEffect(() => {
     if (nodeAgeFactor != null && nodalBackground) {

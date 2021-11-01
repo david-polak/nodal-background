@@ -12,6 +12,7 @@ export const DefaultArguments: any = {
   linkDash: [],
   nodeMaxInitialVelocity: 20,
   nodeInitialMass: 1.5,
+  nodeInitialMassRange: 0,
   nodeAgeFactor: 0.5,
   nodeDeAgeFactor: 2,
   nodeVisualSize: 0.5,
@@ -101,6 +102,20 @@ export const ArgumentTypes: ArgTypes = {
     table: {
       type: { summary: "number" },
       defaultValue: { summary: 1.5 },
+    },
+  },
+
+  nodeInitialMassRange: {
+    description: "Range of the initial mass of the nodes.",
+    control: {
+      type: "range",
+      min: 0,
+      max: 100,
+      step: 0.1,
+    },
+    table: {
+      type: { summary: "number" },
+      defaultValue: { summary: 0 },
     },
   },
 

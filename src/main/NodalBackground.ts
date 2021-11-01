@@ -14,6 +14,7 @@ import { MouseHandler } from "./MouseHandler"
 import { EulerTicker } from "../tickers/EulerTicker"
 import { FPSCounter } from "./FPSCounter"
 import { AntiEulerTicker } from "../tickers/AntiEulerTicker"
+import getRandomArbitrary from "../utils/getRandomArbitrary"
 
 export enum NodalBackgroundMode {
   Gravity = "Gravity",
@@ -34,6 +35,7 @@ export interface NodalBackgroundProps {
   nodeColor?: string
   nodeMaxInitialVelocity?: number
   nodeInitialMass?: number
+  nodeInitialMassRange?: number
   nodeAgeFactor?: number
   nodeDeAgeFactor?: number
   nodeVisualSize?: number
@@ -64,6 +66,7 @@ export const defaultNodalBackgroundProps: NodalBackgroundProps = {
   nodeColor: "#000000",
   nodeMaxInitialVelocity: 20,
   nodeInitialMass: 1.5,
+  nodeInitialMassRange: 0,
   nodeAgeFactor: 0.5,
   nodeDeAgeFactor: 2,
   nodeVisualSize: 0.5,
@@ -125,6 +128,9 @@ export class NodalBackground {
     this.nodeInitialMass = props.nodeInitialMass
       ? props.nodeInitialMass
       : this.props.nodeInitialMass
+    this.nodeInitialMassRange = props.nodeInitialMassRange
+      ? props.nodeInitialMassRange
+      : this.props.nodeInitialMassRange
     this.nodeAgeFactor = props.nodeAgeFactor
       ? props.nodeAgeFactor
       : this.props.nodeAgeFactor
@@ -195,6 +201,17 @@ export class NodalBackground {
 
   set nodeInitialMass(nodeInitialMass: number) {
     this.props.nodeInitialMass = nodeInitialMass
+  }
+
+  get nodeInitialMass() {
+    if (this.props.nodeInitialMassRange > 0) {
+      return getRandomArbitrary(0, this.props.nodeInitialMassRange)
+    }
+    return this.props.nodeInitialMass
+  }
+
+  set nodeInitialMassRange(nodeInitialMassRange: number) {
+    this.props.nodeInitialMassRange = nodeInitialMassRange
   }
 
   set nodeAgeFactor(nodeAgeFactor: number) {
@@ -346,7 +363,7 @@ export class NodalBackground {
     const node = new BasicNode(
       this.canvas,
       this.props.nodeMaxInitialVelocity,
-      this.props.nodeInitialMass
+      this.nodeInitialMass
     )
     node.nodeColor = this.props.nodeColor
     node.visualSize = this.props.nodeVisualSize
@@ -370,10 +387,7 @@ export class NodalBackground {
       nodeA.mass = this.props.nodeMaxMass as number
     }
 
-    nodeB.recreate(
-      this.props.nodeMaxInitialVelocity,
-      this.props.nodeInitialMass
-    )
+    nodeB.recreate(this.props.nodeMaxInitialVelocity, this.nodeInitialMass)
   }
 
   tick(time: number) {
@@ -460,7 +474,7 @@ export class NodalBackground {
           if (!this.props.preserveNumberOfNodes) {
             nodeA.recreate(
               this.props.nodeMaxInitialVelocity,
-              this.props.nodeInitialMass
+              this.nodeInitialMass
             )
             continue
           }
@@ -473,7 +487,7 @@ export class NodalBackground {
           } else {
             nodeA.recreate(
               this.props.nodeMaxInitialVelocity,
-              this.props.nodeInitialMass
+              this.nodeInitialMass
             )
           }
         } else if (nodeA.age > 1) {
