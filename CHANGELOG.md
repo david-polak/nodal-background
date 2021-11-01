@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/david-polak/nodal-background/compare/v1.2.0...v1.2.1) (2021-11-01)
+
+
+### Minor changes
+
+* remove badge ([55db30c](https://github.com/david-polak/nodal-background/commit/55db30c9a70fce5e7702ffd38a4fa0f23f2c303d))
+
 ## [1.2.0](https://github.com/david-polak/nodal-background/compare/v1.1.0...v1.2.0) (2021-11-01)
 
 
