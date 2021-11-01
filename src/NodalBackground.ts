@@ -81,6 +81,7 @@ export class NodalBackground {
   protected _ticker: AbstractTicker
   protected _linker: AbstractLinker
   protected _fpsCounter: FPSCounter
+  protected _mouseHandler: MouseHandler
 
   protected _tFps: number
   protected _tPrevious: number
@@ -91,11 +92,7 @@ export class NodalBackground {
   protected _nodesToMerge: Array<Array<AbstractNode>> = []
   protected _adjustedNumberOfNodes: number
 
-  direction: boolean
-
   drop_distance: number
-
-  mouse_handler: MouseHandler
 
   factors: Array<Array<number | boolean>> = []
 
@@ -151,10 +148,8 @@ export class NodalBackground {
       ? props.fpsCounter
       : this.props.fpsCounter
 
-    this.direction = true
-
     this.drop_distance = 0
-    this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
+    this._mouseHandler = new MouseHandler(this.canvas, this.addNode.bind(this))
 
     this._tPrevious = Date.now()
     this._alive = true
@@ -368,7 +363,7 @@ export class NodalBackground {
       this._ticker.tickSingle(time, node)
 
       // resetting the mouse node's position
-      this.mouse_handler.tick()
+      this._mouseHandler.tick()
     }
 
     for (let i = 0; i < this._nodes.length; i++) {
