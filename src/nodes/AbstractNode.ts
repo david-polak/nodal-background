@@ -6,42 +6,43 @@ export abstract class AbstractNode {
   protected _canvas: HTMLCanvasElement
   protected _context: CanvasRenderingContext2D
   protected _nodeColor: RgbaObject
+  protected _ageFactor: number
+  protected _deAgeFactor: number
 
-  position: Vector2
-  velocity: Vector2
-  age: number
-  ageFactor: number
-  deAgeFactor: number
-  mass: number
+  public _visualSize: number
+  public position: Vector2
+  public velocity: Vector2
+  public age: number
+  public mass: number
 
-  constructor(
-    canvas: HTMLCanvasElement,
-    max_velocity: number,
-    mass?: number,
-    age?: number,
-    age_factor?: number
-  ) {
+  constructor(canvas: HTMLCanvasElement, maxVelocity: number, mass: number) {
     this._canvas = canvas
     this._context = canvas.getContext("2d")
 
-    this.recreate(max_velocity, mass, age, age_factor)
+    this.age = 0
+
+    this.recreate(maxVelocity, mass)
   }
 
   set nodeColor(nodeColor: string) {
     this._nodeColor = hexRgb(nodeColor)
   }
 
-  recreate(
-    max_velocity: number,
-    mass?: number,
-    age?: number,
-    ageFactor?: number,
-    deAgeFactor?: number
-  ): void {
-    this.age = age || 0
-    this.ageFactor = ageFactor || 0.5
-    this.deAgeFactor = deAgeFactor || 2
-    this.mass = mass || 1.5
+  set ageFactor(ageFactor: number) {
+    this._ageFactor = ageFactor
+  }
+
+  set deAgeFactor(deAgeFactor: number) {
+    this._deAgeFactor = deAgeFactor
+  }
+
+  set visualSize(visualSize: number) {
+    this._visualSize = visualSize
+  }
+
+  recreate(maxVelocity: number, mass: number): void {
+    this.age = 0
+    this.mass = mass
 
     this.position = new Vector2(
       getRandomArbitrary(0, this._canvas.width),
@@ -49,17 +50,17 @@ export abstract class AbstractNode {
     )
 
     this.velocity = new Vector2(
-      getRandomArbitrary(-max_velocity, max_velocity),
-      getRandomArbitrary(-max_velocity, max_velocity)
+      getRandomArbitrary(-maxVelocity, maxVelocity),
+      getRandomArbitrary(-maxVelocity, maxVelocity)
     )
   }
 
   ageNode(tDelta: number): void {
-    this.age = this.age + this.ageFactor * (tDelta / 1000)
+    this.age = this.age + this._ageFactor * (tDelta / 1000)
   }
 
   deAgeNode(tDelta: number): void {
-    this.age = this.age - this.deAgeFactor * (tDelta / 1000)
+    this.age = this.age - this._deAgeFactor * (tDelta / 1000)
   }
 
   abstract render(): void

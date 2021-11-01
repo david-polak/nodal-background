@@ -11,7 +11,7 @@ export class BasicNode extends AbstractNode {
     this._context.arc(
       this.position.x,
       this.position.y,
-      Math.sqrt(this.mass / Math.PI) + 0.5,
+      Math.sqrt(this.mass / Math.PI) + this._visualSize,
       0,
       2 * Math.PI
     )

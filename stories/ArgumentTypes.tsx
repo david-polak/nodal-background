@@ -3,13 +3,18 @@ import { NodalBackgroundMode } from "../src/NodalBackground"
 
 export const DefaultArguments: any = {
   mode: NodalBackgroundMode.AntiGravity,
-  linkColor: "#222222",
-  nodeColor: "#222222",
+  linkColor: "#000000",
+  nodeColor: "#000000",
   numberOfNodes: 100,
   preserveNumberOfNodes: true,
   fps: 30,
   fpsCounter: false,
   linkDash: [],
+  nodeMaxInitialVelocity: 20,
+  nodeInitialMass: 1.5,
+  nodeAgeFactor: 0.5,
+  nodeDeAgeFactor: 2,
+  nodeVisualSize: 0.5,
 }
 
 export const ArgumentTypes: ArgTypes = {
@@ -63,6 +68,76 @@ export const ArgumentTypes: ArgTypes = {
     table: {
       type: { summary: "hex color" },
       defaultValue: { summary: "#000000" },
+    },
+  },
+
+  nodeMaxInitialVelocity: {
+    description: "Initial velocity of nodes.",
+    control: {
+      type: "range",
+      min: 1,
+      max: 300,
+      step: 1,
+    },
+    table: {
+      type: { summary: "number" },
+      defaultValue: { summary: 20 },
+    },
+  },
+
+  nodeInitialMass: {
+    description: "Initial mass of the nodes.",
+    control: {
+      type: "range",
+      min: 1,
+      max: 100,
+      step: 0.1,
+    },
+    table: {
+      type: { summary: "number" },
+      defaultValue: { summary: 1.5 },
+    },
+  },
+
+  nodeVisualSize: {
+    description: "Visual size of the nodes (does not affect gravity)",
+    control: {
+      type: "range",
+      min: 0,
+      max: 30,
+      step: 0.01,
+    },
+    table: {
+      type: { summary: "number" },
+      defaultValue: { summary: 1.5 },
+    },
+  },
+
+  nodeAgeFactor: {
+    description: "How quickly nodes fade in.",
+    control: {
+      type: "range",
+      min: 0,
+      max: 10,
+      step: 0.01,
+    },
+    table: {
+      type: { summary: "number" },
+      defaultValue: { summary: 0.5 },
+    },
+  },
+
+  nodeDeAgeFactor: {
+    description: "How quickly nodes fade out.",
+    control: {
+      type: "range",
+      min: 0,
+      max: 10,
+      step: 0.01,
+    },
+    table: {
+      type: { summary: "number" },
+      defaultValue: { summary: 2 },
     },
   },
 

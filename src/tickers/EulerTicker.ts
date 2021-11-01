@@ -24,7 +24,10 @@ export class EulerTicker extends AbstractTicker {
     const attraction = 5
     const massFactor = 1
 
-    if (distance < Math.sqrt((nodeA.mass + nodeB.mass) / Math.PI)) {
+    if (
+      distance <
+      Math.sqrt((nodeA.mass + nodeB.mass) / Math.PI) + nodeA._visualSize * 1.5
+    ) {
       return true
     }
 

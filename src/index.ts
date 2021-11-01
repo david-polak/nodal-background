@@ -11,6 +11,11 @@ export function useNodalBackground(props: NodalBackgroundProps) {
     linkColor,
     linkDash,
     nodeColor,
+    nodeMaxInitialVelocity,
+    nodeInitialMass,
+    nodeAgeFactor,
+    nodeDeAgeFactor,
+    nodeVisualSize,
     ticker,
     linker,
   } = props
@@ -88,6 +93,36 @@ export function useNodalBackground(props: NodalBackgroundProps) {
       nodalBackground.linker = linker
     }
   }, [linker])
+
+  useEffect(() => {
+    if (nodeMaxInitialVelocity && nodalBackground) {
+      nodalBackground.nodeMaxInitialVelocity = nodeMaxInitialVelocity
+    }
+  }, [nodeMaxInitialVelocity])
+
+  useEffect(() => {
+    if (nodeInitialMass && nodalBackground) {
+      nodalBackground.nodeInitialMass = nodeInitialMass
+    }
+  }, [nodeInitialMass])
+
+  useEffect(() => {
+    if (nodeAgeFactor && nodalBackground) {
+      nodalBackground.nodeAgeFactor = nodeAgeFactor
+    }
+  }, [nodeAgeFactor])
+
+  useEffect(() => {
+    if (nodeDeAgeFactor && nodalBackground) {
+      nodalBackground.nodeDeAgeFactor = nodeDeAgeFactor
+    }
+  }, [nodeDeAgeFactor])
+
+  useEffect(() => {
+    if (nodeVisualSize && nodalBackground) {
+      nodalBackground.nodeVisualSize = nodeVisualSize
+    }
+  }, [nodeVisualSize])
 
   return {
     setContainer,

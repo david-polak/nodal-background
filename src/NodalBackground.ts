@@ -31,7 +31,13 @@ export interface NodalBackgroundProps {
 
   linkColor?: string
   linkDash: Array<number>
+
   nodeColor?: string
+  nodeMaxInitialVelocity: number
+  nodeInitialMass: number
+  nodeAgeFactor: number
+  nodeDeAgeFactor: number
+  nodeVisualSize: number
 
   fps?: number
   fpsCounter?: boolean
@@ -49,7 +55,13 @@ export const defaultNodalBackgroundProps: NodalBackgroundProps = {
 
   linkColor: "#000000",
   linkDash: [],
+
   nodeColor: "#000000",
+  nodeMaxInitialVelocity: 20,
+  nodeInitialMass: 1.5,
+  nodeAgeFactor: 0.5,
+  nodeDeAgeFactor: 2,
+  nodeVisualSize: 0.5,
 
   fps: 30,
   fpsCounter: false,
@@ -84,7 +96,6 @@ export class NodalBackground {
 
   direction: boolean
 
-  max_velocity: number
   drop_distance: number
 
   mouse_handler: MouseHandler
@@ -106,6 +117,22 @@ export class NodalBackground {
     window.addEventListener("resize", this._resizeListener)
 
     this.nodeColor = props.nodeColor ? props.nodeColor : this.props.nodeColor
+    this.nodeMaxInitialVelocity = props.nodeMaxInitialVelocity
+      ? props.nodeMaxInitialVelocity
+      : this.props.nodeMaxInitialVelocity
+    this.nodeInitialMass = props.nodeInitialMass
+      ? props.nodeInitialMass
+      : this.props.nodeInitialMass
+    this.nodeAgeFactor = props.nodeAgeFactor
+      ? props.nodeAgeFactor
+      : this.props.nodeAgeFactor
+    this.nodeDeAgeFactor = props.nodeDeAgeFactor
+      ? props.nodeDeAgeFactor
+      : this.props.nodeDeAgeFactor
+    this.nodeVisualSize = props.nodeVisualSize
+      ? props.nodeVisualSize
+      : this.props.nodeVisualSize
+
     this.resize()
 
     this.mode = props.mode ? props.mode : this.props.mode
@@ -129,7 +156,6 @@ export class NodalBackground {
 
     this.direction = true
 
-    this.max_velocity = 20
     this.drop_distance = 0
     this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
 
@@ -146,6 +172,29 @@ export class NodalBackground {
   set nodeColor(nodeColor: string) {
     this.props.nodeColor = nodeColor
     this._nodes.forEach((node) => (node.nodeColor = nodeColor))
+  }
+
+  set nodeMaxInitialVelocity(nodeMaxInitialVelocity: number) {
+    this.props.nodeMaxInitialVelocity = nodeMaxInitialVelocity
+  }
+
+  set nodeInitialMass(nodeInitialMass: number) {
+    this.props.nodeInitialMass = nodeInitialMass
+  }
+
+  set nodeAgeFactor(nodeAgeFactor: number) {
+    this.props.nodeAgeFactor = nodeAgeFactor
+    this._nodes.forEach((node) => (node.ageFactor = nodeAgeFactor))
+  }
+
+  set nodeDeAgeFactor(nodeDeAgeFactor: number) {
+    this.props.nodeDeAgeFactor = nodeDeAgeFactor
+    this._nodes.forEach((node) => (node.deAgeFactor = nodeDeAgeFactor))
+  }
+
+  set nodeVisualSize(nodeVisualSize: number) {
+    this.props.nodeVisualSize = nodeVisualSize
+    this._nodes.forEach((node) => (node.visualSize = nodeVisualSize))
   }
 
   set ticker(ticker: typeof AbstractTicker) {
@@ -256,8 +305,15 @@ export class NodalBackground {
   }
 
   addNode(): AbstractNode {
-    const node = new BasicNode(this.canvas, this.max_velocity)
+    const node = new BasicNode(
+      this.canvas,
+      this.props.nodeMaxInitialVelocity,
+      this.props.nodeInitialMass
+    )
     node.nodeColor = this.props.nodeColor
+    node.visualSize = this.props.nodeVisualSize
+    node.ageFactor = this.props.nodeAgeFactor
+    node.deAgeFactor = this.props.nodeDeAgeFactor
     this._nodesToAdd.push(node)
     return node
   }
@@ -272,7 +328,10 @@ export class NodalBackground {
       (nodeA.mass + nodeB.mass)
     nodeA.mass += nodeB.mass
 
-    nodeB.recreate(this.max_velocity)
+    nodeB.recreate(
+      this.props.nodeMaxInitialVelocity,
+      this.props.nodeInitialMass
+    )
   }
 
   tick(time: number) {
@@ -357,7 +416,10 @@ export class NodalBackground {
       ) {
         if (nodeA.age < 0) {
           if (!this.props.preserveNumberOfNodes) {
-            nodeA.recreate(this.max_velocity)
+            nodeA.recreate(
+              this.props.nodeMaxInitialVelocity,
+              this.props.nodeInitialMass
+            )
             continue
           }
 
@@ -367,7 +429,10 @@ export class NodalBackground {
           ) {
             this._nodesToRemove.push(nodeA)
           } else {
-            nodeA.recreate(this.max_velocity)
+            nodeA.recreate(
+              this.props.nodeMaxInitialVelocity,
+              this.props.nodeInitialMass
+            )
           }
         } else if (nodeA.age > 1) {
           nodeA.age = 1
