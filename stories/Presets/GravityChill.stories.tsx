@@ -6,7 +6,7 @@ import { ArgumentTypes, DefaultArguments } from "../ArgumentTypes"
 import { NodalBackgroundMode } from "../../src/main/NodalBackground"
 import ReactMarkdown from "react-markdown"
 
-import "./Presets.css"
+import "../Presets.css"
 
 export default {
   title: "Presets/Gravity Chill",
