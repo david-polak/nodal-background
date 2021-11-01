@@ -9,4 +9,4 @@ cp package.json dist/
 
 npm config set //registry.npmjs.org/:_authToken "${NPM_TOKEN}"
 
-npm publish ./dist/ --dry-run
+npm publish ./dist/
