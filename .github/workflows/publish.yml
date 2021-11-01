@@ -21,3 +21,5 @@ jobs:
 
       - name: NPM Publish
         run: npm run ci-publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
