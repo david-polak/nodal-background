@@ -26,6 +26,13 @@
     "src/**/*.{ts,tsx}": "eslint --cache --fix",
     "{src,stories}/**/*.{ts,tsx,js,jsx,css,md,json}": "prettier --write"
   },
+  "keywords": [
+    "animated abstract background",
+    "react bindings",
+    "abstract",
+    "animation",
+    "canvas"
+  ],
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@storybook/addon-actions": "^6.3.12",
