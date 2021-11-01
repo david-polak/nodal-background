@@ -1,37 +1,67 @@
-import {ArgTypes} from "@storybook/react";
-import {NodalBackgroundMode} from "../src/NodalBackground";
+import { ArgTypes } from "@storybook/react"
+import { NodalBackgroundMode } from "../src/NodalBackground"
 
 export const DefaultArguments: any = {
   mode: NodalBackgroundMode.AntiGravity,
   linkColor: "#222222",
   nodeColor: "#222222",
   numberOfNodes: 100,
+  fps: 30,
 }
 
 export const ArgumentTypes: ArgTypes = {
   mode: {
-    description: "The type of the Nodal Background",
+    description:
+      "The type of the behaviour of the nodes. Greatly affects the visuals.",
     control: {
-      type: 'radio'
+      type: "radio",
     },
     options: [
       NodalBackgroundMode.AntiGravity,
       NodalBackgroundMode.Gravity,
-      NodalBackgroundMode.Simple
+      NodalBackgroundMode.Simple,
     ],
     table: {
-      type: { summary: 'enum[AntiGravity|Gravity|Simple]' },
+      type: { summary: "enum[AntiGravity|Gravity|Simple]" },
       defaultValue: { summary: "AntiGravity" },
     },
   },
 
-  linkColor: {
-    description: "Color of the node links.",
+  numberOfNodes: {
+    description: "Target number of nodes in a 1200x1200 area (fuzzy).",
     control: {
-      type: 'color'
+      type: "range",
+      min: 1,
+      max: 300,
+      step: 1,
     },
     table: {
-      type: { summary: 'hex color' },
+      type: { summary: "number" },
+      defaultValue: { summary: 100 },
+    },
+  },
+
+  fps: {
+    description: "Target fps",
+    control: {
+      type: "range",
+      min: 1,
+      max: 300,
+      step: 1,
+    },
+    table: {
+      type: { summary: "number" },
+      defaultValue: { summary: 30 },
+    },
+  },
+
+  linkColor: {
+    description: "Color of the links between nodes.",
+    control: {
+      type: "color",
+    },
+    table: {
+      type: { summary: "hex color" },
       defaultValue: { summary: "#000000" },
     },
   },
@@ -39,25 +69,11 @@ export const ArgumentTypes: ArgTypes = {
   nodeColor: {
     description: "Color of the nodes.",
     control: {
-      "type": 'color'
+      type: "color",
     },
     table: {
-      type: { summary: 'hex color' },
+      type: { summary: "hex color" },
       defaultValue: { summary: "#000000" },
-    },
-  },
-
-  numberOfNodes: {
-    description: "Target number of nodes (fuzzy)",
-    control: {
-      type: 'range',
-      min: 1,
-      max: 300,
-      step: 1,
-    },
-    table: {
-      type: { summary: 'number' },
-      defaultValue: { summary: 100 },
     },
   },
 }

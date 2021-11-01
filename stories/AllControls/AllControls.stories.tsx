@@ -7,12 +7,10 @@ import { ArgumentTypes, DefaultArguments } from "../ArgumentTypes"
 export default {
   title: "Controls/All Controls",
   argTypes: {
-    mode: ArgumentTypes.mode,
-    numberOfNodes: ArgumentTypes.numberOfNodes,
+    ...ArgumentTypes,
   },
   args: {
-    mode: DefaultArguments.mode,
-    numberOfNodes: DefaultArguments.numberOfNodes,
+    ...DefaultArguments,
   },
   parameters: {
     controls: { expanded: true },

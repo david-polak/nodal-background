@@ -29,6 +29,7 @@ export interface NodalBackgroundProps {
   linkColor?: string
   nodeColor?: string
 
+  fps?: number
   ticker?: typeof AbstractTicker
 }
 
@@ -42,6 +43,7 @@ export const defaultNodalBackgroundProps: NodalBackgroundProps = {
   linkColor: "#000000",
   nodeColor: "#000000",
 
+  fps: 30,
   ticker: null,
 }
 
@@ -54,6 +56,8 @@ export class NodalBackground {
   protected _alive: boolean
 
   protected _ticker: AbstractTicker
+
+  protected _tFps: number
 
   protected _nodes: Array<AbstractNode> = []
   protected _nodesToAdd: Array<AbstractNode> = []
@@ -69,7 +73,6 @@ export class NodalBackground {
   direction: boolean
 
   tPrevious: number
-  tFps: number
 
   linker: AbstractLinker
 
@@ -108,11 +111,11 @@ export class NodalBackground {
       ? props.numberOfNodes
       : this.props.numberOfNodes
 
+    this.fps = props.fps ? props.fps : this.props.fps
+
     this.counter = 0
     this.direction = true
 
-    const target_fps = 50
-    this.tFps = (1 / target_fps) * 1000
     this.max_velocity = 20
     this.drop_distance = 0
     this.mouse_handler = new MouseHandler(this.canvas, this.addNode.bind(this))
@@ -171,6 +174,11 @@ export class NodalBackground {
     }
   }
 
+  set fps(fps: number) {
+    this.props.fps = fps
+    this._tFps = (1 / fps) * 1000
+  }
+
   destroy() {
     if (!this._alive) {
       this._alive = false
@@ -203,9 +211,9 @@ export class NodalBackground {
     const now = Date.now()
     const tDelta = now - this.tPrevious
 
-    if (tDelta > this.tFps) {
+    if (tDelta > this._tFps) {
       this.tick(tDelta)
-      this.tPrevious = now - (tDelta % this.tFps)
+      this.tPrevious = now - (tDelta % this._tFps)
     }
 
     requestAnimationFrame(this.handleAnimationFrame.bind(this))

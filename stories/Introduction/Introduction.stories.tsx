@@ -14,9 +14,9 @@ export default {
   component: Introduction,
   argTypes: {
     mode: ArgumentTypes.mode,
+    numberOfNodes: ArgumentTypes.numberOfNodes,
     linkColor: ArgumentTypes.linkColor,
     nodeColor: ArgumentTypes.nodeColor,
-    numberOfNodes: ArgumentTypes.numberOfNodes,
   },
   args: {
     mode: DefaultArguments.mode,

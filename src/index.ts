@@ -4,8 +4,14 @@ import { NodalBackground, NodalBackgroundProps } from "./NodalBackground"
 export function useNodalBackground(props: NodalBackgroundProps) {
   // console.log(props)
 
-  const { mode, numberOfNodes, preserveNumberOfNodes, linkColor, nodeColor } =
-    props
+  const {
+    fps,
+    mode,
+    numberOfNodes,
+    preserveNumberOfNodes,
+    linkColor,
+    nodeColor,
+  } = props
 
   const [container, setContainer] = useState(props.container)
   const [nodalBackground, setNodalBackground] = useState(null)
@@ -50,6 +56,12 @@ export function useNodalBackground(props: NodalBackgroundProps) {
       nodalBackground.preserveNumberOfNodes = preserveNumberOfNodes
     }
   }, [preserveNumberOfNodes])
+
+  useEffect(() => {
+    if (fps && nodalBackground) {
+      nodalBackground.fps = fps
+    }
+  }, [fps])
 
   return {
     setContainer,
