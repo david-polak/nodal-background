@@ -9,12 +9,19 @@ import ReactMarkdown from "react-markdown"
 import "./Presets.css"
 
 export default {
-  title: "Presets",
+  title: "Presets/Gravity Chill",
   argTypes: {
     ...ArgumentTypes,
   },
   args: {
     ...DefaultArguments,
+    mode: NodalBackgroundMode.Gravity,
+    numberOfNodes: 130,
+    nodeVisualSize: 1.5,
+    nodeMaxMass: 30,
+    simMaxDistance: 85,
+    simMinDistance: 10,
+    simAttraction: 3,
   },
   parameters: {
     controls: { expanded: true },
@@ -24,16 +31,6 @@ export default {
 }
 
 export const GravityChill = (props: any) => {
-  const overrides = {
-    mode: NodalBackgroundMode.Gravity,
-    numberOfNodes: 130,
-    nodeVisualSize: 1.5,
-    simMaxDistance: 85,
-    simMinDistance: 10,
-    simAttraction: 3,
-  }
-  props = { ...props, ...overrides }
-
   const description = `
   ## Gravity Chill
   Gravity mode with less movement and larger node sizes.
@@ -41,6 +38,7 @@ export const GravityChill = (props: any) => {
   mode: NodalBackgroundMode.Gravity,
   numberOfNodes:  130,
   nodeVisualSize:  1.5,
+  nodeMaxMass: 30,
   simMaxDistance:  85,
   simMinDistance:  10,
   simAttraction:  3

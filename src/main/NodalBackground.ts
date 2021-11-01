@@ -37,6 +37,7 @@ export interface NodalBackgroundProps {
   nodeAgeFactor?: number
   nodeDeAgeFactor?: number
   nodeVisualSize?: number
+  nodeMaxMass?: number
 
   fps?: number
   fpsCounter?: boolean
@@ -66,6 +67,7 @@ export const defaultNodalBackgroundProps: NodalBackgroundProps = {
   nodeAgeFactor: 0.5,
   nodeDeAgeFactor: 2,
   nodeVisualSize: 0.5,
+  nodeMaxMass: 0,
 
   fps: 30,
   fpsCounter: false,
@@ -132,6 +134,9 @@ export class NodalBackground {
     this.nodeVisualSize = props.nodeVisualSize
       ? props.nodeVisualSize
       : this.props.nodeVisualSize
+    this.nodeMaxMass = props.nodeMaxMass
+      ? props.nodeMaxMass
+      : this.props.nodeMaxMass
 
     this.resize()
 
@@ -205,6 +210,10 @@ export class NodalBackground {
   set nodeVisualSize(nodeVisualSize: number) {
     this.props.nodeVisualSize = nodeVisualSize
     this._nodes.forEach((node) => (node.visualSize = nodeVisualSize))
+  }
+
+  set nodeMaxMass(nodeMaxMass: number) {
+    this.props.nodeMaxMass = nodeMaxMass
   }
 
   set ticker(ticker: typeof AbstractTicker) {
@@ -356,6 +365,10 @@ export class NodalBackground {
       (nodeA.mass * nodeA.velocity.y + nodeB.mass * nodeB.velocity.y) /
       (nodeA.mass + nodeB.mass)
     nodeA.mass += nodeB.mass
+
+    if (this.props.nodeMaxMass > 0 && nodeA.mass > this.props.nodeMaxMass) {
+      nodeA.mass = this.props.nodeMaxMass as number
+    }
 
     nodeB.recreate(
       this.props.nodeMaxInitialVelocity,

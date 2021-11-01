@@ -16,6 +16,7 @@ export function useNodalBackground(props: NodalBackgroundProps) {
     nodeAgeFactor,
     nodeDeAgeFactor,
     nodeVisualSize,
+    nodeMaxMass,
     ticker,
     linker,
     simMaxDistance,
@@ -127,6 +128,12 @@ export function useNodalBackground(props: NodalBackgroundProps) {
       nodalBackground.nodeVisualSize = nodeVisualSize
     }
   }, [nodeVisualSize])
+
+  useEffect(() => {
+    if (nodeMaxMass != null && nodalBackground) {
+      nodalBackground.nodeMaxMass = nodeMaxMass
+    }
+  }, [nodeMaxMass])
 
   useEffect(() => {
     if (simMaxDistance != null && nodalBackground) {

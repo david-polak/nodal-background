@@ -15,6 +15,7 @@ export const DefaultArguments: any = {
   nodeAgeFactor: 0.5,
   nodeDeAgeFactor: 2,
   nodeVisualSize: 0.5,
+  nodeMaxMass: 0,
   simMaxDistance: 150,
   simMinDistance: 3,
   simMassFactor: 1,
@@ -100,6 +101,20 @@ export const ArgumentTypes: ArgTypes = {
     table: {
       type: { summary: "number" },
       defaultValue: { summary: 1.5 },
+    },
+  },
+
+  nodeMaxMass: {
+    description: "Maximum node size when merging, prevents large nodes.",
+    control: {
+      type: "range",
+      min: 0,
+      max: 500,
+      step: 1,
+    },
+    table: {
+      type: { summary: "number" },
+      defaultValue: { summary: 0 },
     },
   },
 
