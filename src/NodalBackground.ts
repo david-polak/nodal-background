@@ -247,6 +247,11 @@ export class NodalBackground {
     } else {
       this._ticker = new EulerTicker()
     }
+
+    this._ticker.maxDistance = this.props.simMaxDistance
+    this._ticker.minDistance = this.props.simMinDistance
+    this._ticker.massFactor = this.props.simMassFactor
+    this._ticker.attraction = this.props.simAttraction
   }
 
   set simMaxDistance(simMaxDistance: number) {

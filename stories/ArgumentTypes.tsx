@@ -199,8 +199,8 @@ export const ArgumentTypes: ArgTypes = {
     control: {
       type: "range",
       min: 1,
-      max: 5000,
-      step: 1,
+      max: 300,
+      step: 0.1,
     },
     table: {
       type: { summary: "number" },
