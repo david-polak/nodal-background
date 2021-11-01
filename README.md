@@ -19,6 +19,7 @@ export const NodalBackground = (props: NodalBackgroundProps) => {
   
   const {setContainer} = useNodalBackground({
     container: container.current,
+    ...props
   })
   
   useEffect(() => {
