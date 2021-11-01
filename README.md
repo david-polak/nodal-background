@@ -132,6 +132,9 @@ chaos.
 #### `nodeInitialMass: number, default: 1.5`
 Initial mass of the nodes.
 
+#### `nodeMaxMass: number, default: 0`
+Maximum mass of the nodes, applied when merging. Value `0` sets no maximum mass.
+
 #### `nodeVisualSize: number, default: 0.5`
 Visual node size offset, does not affect the simulation apart from merging.
 
