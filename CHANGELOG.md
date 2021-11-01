@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/david-polak/nodal-background/compare/v0.0.6...v0.0.7) (2021-11-01)
+
+
+### Features
+
+* add fps control ([a5a431e](https://github.com/david-polak/nodal-background/commit/a5a431ef8e98cbde53a3d5503ee412fc5949844c))
+* add fpsCounter control ([60ebe9b](https://github.com/david-polak/nodal-background/commit/60ebe9b231cd24355d51a61eb05786abba92ef2e))
+* add linkDash control ([89e3d35](https://github.com/david-polak/nodal-background/commit/89e3d35ecda332c09cfe070c2bfef567b4337274))
+* add node controls ([6eac1cc](https://github.com/david-polak/nodal-background/commit/6eac1ccef1d75aaa9778e7e0b2117bb8e1245483))
+* add preserveNumberOfNodes control ([5d2eaf9](https://github.com/david-polak/nodal-background/commit/5d2eaf9f478345655fae88729415c41512f03889))
+* add recordings to README ([839f2d9](https://github.com/david-polak/nodal-background/commit/839f2d9a89572ca90264a53878214b51633c7634))
+* add sim controls ([c7368f3](https://github.com/david-polak/nodal-background/commit/c7368f30443acc31fd9587af85fac503a295e929))
+
+
+### Technical debt
+
+* clean up unused variables ([83eecf0](https://github.com/david-polak/nodal-background/commit/83eecf029dce2a2c97f1750da65d56bb89ea0c21))
+* move stories around ([147873d](https://github.com/david-polak/nodal-background/commit/147873dfd6c266f536cf489d10dbadd681c35bd8))
+* remove weight and height ([147e2fc](https://github.com/david-polak/nodal-background/commit/147e2fc6d1b6a268adf6eac77a05b7a7a64d0977))
+
+
+### Minor changes
+
+* fix typo in readme ([8bce5f7](https://github.com/david-polak/nodal-background/commit/8bce5f7247b9c2666047e605c9065703df6e2bd1))
+* move controls around ([e4912de](https://github.com/david-polak/nodal-background/commit/e4912deeb115f5b2d4e5e6b9cceb6556ae451ee7))
+* update range for initial velocity ([d49290d](https://github.com/david-polak/nodal-background/commit/d49290d9ec1a68ffa7c55fa60239eb17eaa41389))
+
 ### [0.0.6](https://github.com/david-polak/nodal-background/compare/v0.0.5...v0.0.6) (2021-10-31)
 
 
