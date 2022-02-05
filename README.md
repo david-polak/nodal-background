@@ -38,7 +38,6 @@ import { useNodalBackground } from "nodal-background"
 
 export const NodalBackgroundComponent = (props: NodalBackgroundProps) => {
   const container = useRef()
-  j
   const {setContainer} = useNodalBackground({
     container: container.current,
     ...props
