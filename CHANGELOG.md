@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/david-polak/nodal-background/compare/v1.2.3...v1.3.0) (2022-02-05)
+
+
+### Features
+
+* upgrade npm dependencies ([8264a94](https://github.com/david-polak/nodal-background/commit/8264a9428a508d95a09e4cef579599e7fab75c2f))
+
+
+### Minor changes
+
+* update storybook theme and favicon ([73f6f35](https://github.com/david-polak/nodal-background/commit/73f6f3593f4da65acbfb6c29c718fb0752b0a66f))
+
 ### [1.2.3](https://github.com/david-polak/nodal-background/compare/v1.2.2...v1.2.3) (2022-02-05)
 
 
