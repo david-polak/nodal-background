@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rm -rf dist/*; tsc",
     "storybook": "start-storybook -p 6006 --no-manager-cache",
-    "build-storybook": "build-storybook --quiet -o docs/",
+    "build-storybook": "build-storybook --quiet -o docs/ && cp static/favicon/* docs/",
     "prepare-disabled": "husky install",
     "ci-publish": "./scripts/publish.sh",
     "standard-version": "standard-version --commit-all",
@@ -38,6 +38,7 @@
     "@storybook/addon-actions": "^6.4.18",
     "@storybook/addon-essentials": "^6.4.18",
     "@storybook/addon-links": "^6.4.18",
+    "@storybook/addons": "^6.4.18",
     "@storybook/react": "^6.4.18",
     "@storybook/theming": "^6.4.18",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
